@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/Textarea";
 import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Alert } from "@/components/ui/Alert";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 import type { ProductFormState } from "@/app/admin/(dashboard)/productos/actions";
 
 export interface ProductFormValues {
@@ -17,6 +18,7 @@ export interface ProductFormValues {
   priceMxn: number;
   stock: number;
   status: string;
+  imageUrl?: string;
 }
 
 function SubmitButton({ label }: { label: string }) {
@@ -42,6 +44,12 @@ export function ProductForm({ action, initialValues, submitLabel }: ProductFormP
   return (
     <form action={formAction} className="flex max-w-2xl flex-col gap-5">
       {state.status === "error" ? <Alert variant="error">{state.message}</Alert> : null}
+
+      <ImageUpload
+        pathPrefix="products"
+        initialUrl={initialValues?.imageUrl}
+        label="Foto del producto"
+      />
 
       <FormField label="Nombre" htmlFor="name">
         <Input id="name" name="name" defaultValue={initialValues?.name} required />

@@ -13,6 +13,7 @@ export interface EventDisplay {
   priceCents: number;
   description: string;
   eventId: string;
+  imageUrl: string | null;
 }
 
 function formatEventDate(iso: string): string {
@@ -69,6 +70,7 @@ async function toDisplay(
     priceCents: event.price_cents,
     description: event.description,
     eventId: event.id,
+    imageUrl: event.image_url,
   };
 }
 

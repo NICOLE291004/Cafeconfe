@@ -6,7 +6,7 @@ import { getPublishedEvents } from "@/lib/events";
 
 export const metadata: Metadata = {
   title: "Eventos",
-  description: "Los próximos encuentros mensuales de Café con Fe en Hermosillo.",
+  description: "Los próximos encuentros mensuales de Un Café con Fe en Hermosillo.",
 };
 
 export default async function EventosPage() {

@@ -7,6 +7,7 @@ export interface ProductDisplay {
   price: string;
   inStock: boolean;
   stock: number;
+  imageUrl: string | null;
 }
 
 function formatPrice(cents: number): string {
@@ -43,6 +44,7 @@ export async function getPublishedProducts(): Promise<ProductDisplay[]> {
       price: formatPrice(product.price_cents),
       inStock: product.stock > 0,
       stock: product.stock,
+      imageUrl: product.image_url,
     }));
   } catch (err) {
     if (isNextDynamicUsageError(err)) throw err;
@@ -70,6 +72,7 @@ export async function getProductBySlug(slug: string): Promise<ProductDisplay | n
       price: formatPrice(data.price_cents),
       inStock: data.stock > 0,
       stock: data.stock,
+      imageUrl: data.image_url,
     };
   } catch (err) {
     if (isNextDynamicUsageError(err)) throw err;

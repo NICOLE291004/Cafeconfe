@@ -6,7 +6,7 @@ import { getPublishedProducts } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Tienda",
-  description: "Productos de Café con Fe para llevar la calidez de los encuentros a casa.",
+  description: "Productos de Un Café con Fe para llevar la calidez de los encuentros a casa.",
 };
 
 export default async function TiendaPage() {

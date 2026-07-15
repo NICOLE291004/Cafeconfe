@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   CalendarDays,
   HelpCircle,
+  Image as ImageIcon,
   LayoutDashboard,
   MessageSquareQuote,
   Package,
@@ -20,6 +21,7 @@ const LINKS = [
   { label: "Registros", href: "/admin/registros", icon: Users },
   { label: "Testimonios", href: "/admin/testimonios", icon: MessageSquareQuote },
   { label: "Preguntas frecuentes", href: "/admin/faq", icon: HelpCircle },
+  { label: "Fotos del sitio", href: "/admin/fotos", icon: ImageIcon },
   { label: "Configuración General", href: "/admin/configuracion", icon: Settings },
 ];
 

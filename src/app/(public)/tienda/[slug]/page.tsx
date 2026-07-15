@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Tag } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { Photo } from "@/components/ui/Photo";
 import { buttonVariants } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { InstagramIcon } from "@/components/ui/icons";
@@ -45,7 +45,12 @@ export default async function ProductoDetailPage({ params }: ProductoPageProps) 
       <div className="gap-content-gap mt-6 grid grid-cols-1 items-start lg:grid-cols-2">
         <Reveal>
           <div className="relative">
-            <PlaceholderImage caption={`Foto: ${product.name}`} className="aspect-square" />
+            <Photo
+              src={product.imageUrl}
+              alt={product.name}
+              caption={`Foto: ${product.name}`}
+              className="aspect-square"
+            />
             {!product.inStock ? (
               <Badge variant="neutral" className="absolute top-3 right-3">
                 Agotado

@@ -9,21 +9,21 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Café con Fe",
-    template: "%s — Café con Fe",
+    default: "Un Café con Fe",
+    template: "%s — Un Café con Fe",
   },
   description: DESCRIPTION,
   openGraph: {
-    title: "Café con Fe",
+    title: "Un Café con Fe",
     description: DESCRIPTION,
     url: SITE_URL,
-    siteName: "Café con Fe",
+    siteName: "Un Café con Fe",
     locale: "es_MX",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Café con Fe",
+    title: "Un Café con Fe",
     description: DESCRIPTION,
   },
   robots: {

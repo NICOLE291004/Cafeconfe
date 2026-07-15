@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cn, focusRing } from "@/lib/utils";
+import { Logo } from "@/components/ui/Logo";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/ui/icons";
 
 const FOOTER_LINKS = [
@@ -27,7 +28,7 @@ export function Footer({ whatsappUrl, instagramUrl }: FooterProps) {
     <footer className="border-border bg-surface-secondary border-t">
       <div className="max-w-content px-container-x py-section-y mx-auto flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="font-display text-ink text-xl font-medium">Café con Fe</p>
+          <Logo />
           <p className="text-ink-secondary max-w-reading mt-2 font-sans text-sm">
             Una comunidad de mujeres en Hermosillo que se reúne para conectar con Dios, en un
             ambiente cálido, íntimo y sin solemnidad.
@@ -84,7 +85,7 @@ export function Footer({ whatsappUrl, instagramUrl }: FooterProps) {
 
       <div className="border-border px-container-x border-t py-4">
         <p className="text-ink-tertiary max-w-content mx-auto font-sans text-xs">
-          © {new Date().getFullYear()} Café con Fe. Hermosillo, Sonora.
+          © {new Date().getFullYear()} Un Café con Fe. Hermosillo, Sonora.
         </p>
       </div>
     </footer>

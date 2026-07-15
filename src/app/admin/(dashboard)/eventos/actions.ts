@@ -23,6 +23,7 @@ function parseEventForm(formData: FormData) {
   const priceMxn = Number(formData.get("price_mxn") ?? 0);
   const capacity = Number(formData.get("capacity") ?? 0);
   const status = String(formData.get("status") ?? "draft");
+  const imageUrl = String(formData.get("image_url") ?? "").trim();
 
   return {
     title,
@@ -33,6 +34,7 @@ function parseEventForm(formData: FormData) {
     price_cents: Math.round(priceMxn * 100),
     capacity,
     status,
+    image_url: imageUrl || null,
   };
 }
 

@@ -23,7 +23,7 @@ export default function AdminLoginPage() {
   return (
     <main className="bg-surface-secondary px-container-x flex min-h-screen items-center justify-center">
       <div className="border-border bg-surface w-full max-w-sm rounded-xl border p-8 shadow-md">
-        <p className="font-display text-2xl font-medium">Café con Fe</p>
+        <p className="font-display text-2xl font-medium">Un Café con Fe</p>
         <p className="text-ink-secondary mt-1 font-sans text-sm">Panel de administración</p>
 
         <form action={formAction} className="mt-8 flex flex-col gap-4">

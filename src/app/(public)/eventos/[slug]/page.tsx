@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CalendarDays, MapPin, Tag } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { Photo } from "@/components/ui/Photo";
 import { RegistrationForm } from "@/components/sections/RegistrationForm";
 import { getEventBySlug } from "@/lib/events";
 import { getSiteSettings } from "@/lib/site-settings";
@@ -49,7 +49,7 @@ export default async function EventoDetailPage({ params }: EventoPageProps) {
     },
     organizer: {
       "@type": "Organization",
-      name: "Café con Fe",
+      name: "Un Café con Fe",
       url: siteUrl,
     },
     offers: {
@@ -79,7 +79,9 @@ export default async function EventoDetailPage({ params }: EventoPageProps) {
 
       <div className="gap-content-gap mt-6 grid grid-cols-1 items-start lg:grid-cols-2">
         <Reveal>
-          <PlaceholderImage
+          <Photo
+            src={event.imageUrl}
+            alt={event.title}
             caption={`Foto: ambiente del encuentro "${event.title}"`}
             className="aspect-[4/5]"
           />

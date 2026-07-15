@@ -13,8 +13,8 @@ export function WelcomeScreen({ whatsappUrl }: WelcomeScreenProps) {
     <Card className="text-center">
       <p className="font-display text-2xl font-medium">¡Qué alegría que estés aquí! ☕</p>
       <p className="text-ink-secondary mt-4 font-sans text-base leading-relaxed">
-        Tu lugar ya está reservado para nuestro próximo Café con Fe. Nos emociona que ahora formes
-        parte de esta comunidad.
+        Tu lugar ya está reservado para nuestro próximo encuentro de Un Café con Fe. Nos emociona
+        que ahora formes parte de esta comunidad.
       </p>
       <p className="text-ink-secondary mt-4 font-sans text-base leading-relaxed">
         Para mantenerte informada sobre recordatorios, ubicación, cambios de horario, recursos y

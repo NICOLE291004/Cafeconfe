@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Coffee, HeartHandshake, Sparkles, Users } from "lucide-react";
 import { buttonVariants } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { Photo } from "@/components/ui/Photo";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Accordion } from "@/components/ui/Accordion";
 import { Reveal } from "@/components/motion/Reveal";
@@ -11,6 +11,7 @@ import { TestimonialCard } from "@/components/sections/TestimonialCard";
 import { getPublishedEvents } from "@/lib/events";
 import { getPublishedTestimonials } from "@/lib/testimonials";
 import { getPublishedFaqs } from "@/lib/faqs";
+import { getSiteImages } from "@/lib/site-images";
 
 const FEATURES = [
   {
@@ -49,10 +50,11 @@ function SectionHeading({ eyebrow, title }: { eyebrow?: string; title: string })
 }
 
 export default async function Home() {
-  const [events, testimonials, faqs] = await Promise.all([
+  const [events, testimonials, faqs, images] = await Promise.all([
     getPublishedEvents().then((e) => e.slice(0, 3)),
     getPublishedTestimonials().then((t) => t.slice(0, 3)),
     getPublishedFaqs(),
+    getSiteImages(),
   ]);
 
   return (
@@ -67,7 +69,7 @@ export default async function Home() {
             Una pausa cálida para conectar con Dios.
           </h1>
           <p className="text-ink-secondary max-w-reading mt-6 font-sans text-lg leading-relaxed">
-            Café con Fe es una comunidad de mujeres que se reúne una vez al mes en un ambiente
+            Un Café con Fe es una comunidad de mujeres que se reúne una vez al mes en un ambiente
             íntimo tipo cafetería — sin la solemnidad de la iglesia tradicional, con toda la
             cercanía de una charla entre amigas.
           </p>
@@ -85,7 +87,9 @@ export default async function Home() {
         </Reveal>
 
         <Reveal delay={0.15} scale={0.96}>
-          <PlaceholderImage
+          <Photo
+            src={images.hero}
+            alt="Un Café con Fe"
             caption="Foto: mesa de café con luz cálida y manos alrededor de una taza"
             className="aspect-[4/5]"
           />
@@ -130,17 +134,19 @@ export default async function Home() {
       <section id="nuestra-historia" className="bg-surface-secondary py-section-y">
         <div className="max-w-content gap-content-gap px-container-x mx-auto grid grid-cols-1 items-center lg:grid-cols-2">
           <Reveal>
-            <PlaceholderImage
-              caption="Foto: fundadoras de Café con Fe conversando"
+            <Photo
+              src={images.historia}
+              alt="Nuestra historia"
+              caption="Foto: fundadoras de Un Café con Fe conversando"
               className="aspect-square"
             />
           </Reveal>
           <Reveal delay={0.1}>
             <SectionHeading eyebrow="Nuestra historia" title="Nació de una necesidad real" />
             <p className="text-ink-secondary max-w-reading mt-6 font-sans text-base leading-relaxed">
-              Café con Fe empezó porque varias amigas buscábamos un espacio para hablar de fe sin la
-              rigidez de un templo — un lugar donde la conversación se sintiera tan natural como un
-              café entre amigas. Hoy es una comunidad mensual que crece boca a boca, hecha para
+              Un Café con Fe empezó porque varias amigas buscábamos un espacio para hablar de fe sin
+              la rigidez de un templo — un lugar donde la conversación se sintiera tan natural como
+              un café entre amigas. Hoy es una comunidad mensual que crece boca a boca, hecha para
               mujeres que quieren una pausa honesta en medio de la semana.
             </p>
           </Reveal>
@@ -154,25 +160,33 @@ export default async function Home() {
         </Reveal>
         <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <Reveal delay={0} className="lg:col-span-2">
-            <PlaceholderImage
+            <Photo
+              src={images.mosaico_1}
+              alt="Así se siente un encuentro"
               caption="Foto: grupo de mujeres riendo alrededor de una mesa"
               className="aspect-video lg:aspect-[21/9]"
             />
           </Reveal>
           <Reveal delay={0.1}>
-            <PlaceholderImage
+            <Photo
+              src={images.mosaico_2}
+              alt="Así se siente un encuentro"
               caption="Foto: taza de café con detalle de vela"
               className="aspect-square"
             />
           </Reveal>
           <Reveal delay={0.15}>
-            <PlaceholderImage
+            <Photo
+              src={images.mosaico_3}
+              alt="Así se siente un encuentro"
               caption="Foto: dos mujeres conversando de cerca"
               className="aspect-square"
             />
           </Reveal>
           <Reveal delay={0.2} className="lg:col-span-2">
-            <PlaceholderImage
+            <Photo
+              src={images.mosaico_4}
+              alt="Así se siente un encuentro"
               caption="Foto: vista amplia del espacio del café"
               className="aspect-video lg:aspect-[21/9]"
             />

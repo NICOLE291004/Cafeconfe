@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
 import { Mail, Phone } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { Photo } from "@/components/ui/Photo";
 import { TestimonialCard } from "@/components/sections/TestimonialCard";
 import { InstagramIcon, FacebookIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { buttonVariants } from "@/components/ui/Button";
 import { focusRing, cn } from "@/lib/utils";
 import { getSiteSettings } from "@/lib/site-settings";
 import { getPublishedTestimonials } from "@/lib/testimonials";
+import { getSiteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Comunidad",
-  description: "Historias de las mujeres que ya forman parte de Café con Fe.",
+  description: "Historias de las mujeres que ya forman parte de Un Café con Fe.",
 };
 
 export default async function ComunidadPage() {
-  const [settings, testimonials] = await Promise.all([
+  const [settings, testimonials, images] = await Promise.all([
     getSiteSettings(),
     getPublishedTestimonials(),
+    getSiteImages(),
   ]);
 
   const socialLinks = [
@@ -40,8 +42,8 @@ export default async function ComunidadPage() {
             Mujeres que ya encontraron su pausa
           </h1>
           <p className="text-ink-secondary max-w-reading mt-4 font-sans text-base leading-relaxed">
-            Cada mes se suman más mujeres a Café con Fe. Esto es lo que dicen quienes ya vinieron —
-            sin filtro, sin guion.
+            Cada mes se suman más mujeres a Un Café con Fe. Esto es lo que dicen quienes ya vinieron
+            — sin filtro, sin guion.
           </p>
         </Reveal>
 
@@ -66,16 +68,25 @@ export default async function ComunidadPage() {
           </Reveal>
           <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-3">
             <Reveal delay={0}>
-              <PlaceholderImage
+              <Photo
+                src={images.comunidad_1}
+                alt="Momento de la comunidad"
                 caption="Foto: grupo grande del encuentro de julio"
                 className="aspect-square"
               />
             </Reveal>
             <Reveal delay={0.1}>
-              <PlaceholderImage caption="Foto: dos asistentes riendo" className="aspect-square" />
+              <Photo
+                src={images.comunidad_2}
+                alt="Momento de la comunidad"
+                caption="Foto: dos asistentes riendo"
+                className="aspect-square"
+              />
             </Reveal>
             <Reveal delay={0.15}>
-              <PlaceholderImage
+              <Photo
+                src={images.comunidad_3}
+                alt="Momento de la comunidad"
                 caption="Foto: mesa llena de tazas y notas"
                 className="aspect-square"
               />

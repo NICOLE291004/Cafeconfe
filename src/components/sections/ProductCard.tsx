@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { Photo } from "@/components/ui/Photo";
 import { focusRing, cn } from "@/lib/utils";
 import type { ProductDisplay } from "@/lib/products";
 
@@ -10,7 +10,12 @@ export function ProductCard({ product }: { product: ProductDisplay }) {
     <Link href={`/tienda/${product.slug}`} className={cn("block rounded-xl", focusRing)}>
       <Card interactive className="flex h-full flex-col gap-4 p-4">
         <div className="relative">
-          <PlaceholderImage caption={`Foto: ${product.name}`} className="aspect-square" />
+          <Photo
+            src={product.imageUrl}
+            alt={product.name}
+            caption={`Foto: ${product.name}`}
+            className="aspect-square"
+          />
           {!product.inStock ? (
             <Badge variant="neutral" className="absolute top-3 right-3">
               Agotado

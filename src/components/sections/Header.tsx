@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/ui/Logo";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import { focusRing, cn } from "@/lib/utils";
 
@@ -25,12 +25,8 @@ export function Header({ whatsappUrl }: HeaderProps) {
   return (
     <header className="border-border bg-surface/90 sticky top-0 z-50 border-b backdrop-blur-sm">
       <div className="max-w-content px-container-x mx-auto flex items-center justify-between py-4">
-        <Link
-          href="/"
-          className={cn("font-display text-ink text-xl font-medium", focusRing, "rounded-sm")}
-          onClick={() => setIsMenuOpen(false)}
-        >
-          Café con Fe
+        <Link href="/" className={cn("rounded-sm", focusRing)} onClick={() => setIsMenuOpen(false)}>
+          <Logo />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -64,7 +60,6 @@ export function Header({ whatsappUrl }: HeaderProps) {
               Únete a la Comunidad
             </a>
           ) : null}
-          <Button size="sm">Próximo encuentro</Button>
         </div>
 
         <button
@@ -116,9 +111,6 @@ export function Header({ whatsappUrl }: HeaderProps) {
                   Únete a la Comunidad
                 </a>
               ) : null}
-              <Button className="mt-2 w-full" onClick={() => setIsMenuOpen(false)}>
-                Próximo encuentro
-              </Button>
             </div>
           </motion.nav>
         )}

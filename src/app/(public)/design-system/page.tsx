@@ -45,7 +45,7 @@ export default function DesignSystemPage() {
     <main>
       <div className="border-border-strong max-w-content px-container-x mx-auto border-b-2 border-dashed py-6 text-center">
         <p className="text-ink-secondary font-sans text-sm">
-          Design System — Café con Fe. Página interna de referencia, no forma parte del sitio
+          Design System — Un Café con Fe. Página interna de referencia, no forma parte del sitio
           público.
         </p>
       </div>
@@ -74,7 +74,7 @@ export default function DesignSystemPage() {
       </Section>
 
       <Section title="Tipografía">
-        <h1 className="font-display text-6xl font-medium">Café con Fe</h1>
+        <h1 className="font-display text-6xl font-medium">Un Café con Fe</h1>
         <p className="font-display mt-3 text-2xl italic">Una pausa cálida para conectar.</p>
         <p className="text-ink-secondary max-w-reading mt-4 font-sans text-base leading-relaxed">
           Cuerpo en Inter: <span className="font-normal">regular 400</span>,{" "}

@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/Textarea";
 import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Alert } from "@/components/ui/Alert";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 import type { EventFormState } from "@/app/admin/(dashboard)/eventos/actions";
 
 export interface EventFormValues {
@@ -19,6 +20,7 @@ export interface EventFormValues {
   priceMxn: number;
   capacity: number;
   status: string;
+  imageUrl?: string;
 }
 
 function SubmitButton({ label }: { label: string }) {
@@ -42,6 +44,12 @@ export function EventForm({ action, initialValues, submitLabel }: EventFormProps
   return (
     <form action={formAction} className="flex max-w-2xl flex-col gap-5">
       {state.status === "error" ? <Alert variant="error">{state.message}</Alert> : null}
+
+      <ImageUpload
+        pathPrefix="events"
+        initialUrl={initialValues?.imageUrl}
+        label="Foto del encuentro"
+      />
 
       <FormField label="Título" htmlFor="title">
         <Input id="title" name="title" defaultValue={initialValues?.title} required />

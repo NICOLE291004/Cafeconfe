@@ -50,6 +50,7 @@ export default async function EditarEventoPage({ params }: EditarEventoPageProps
             priceMxn: event.price_cents / 100,
             capacity: event.capacity,
             status: event.status,
+            imageUrl: event.image_url ?? undefined,
           }}
         />
       </div>

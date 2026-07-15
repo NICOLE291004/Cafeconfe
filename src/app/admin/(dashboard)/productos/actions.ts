@@ -16,6 +16,7 @@ function parseProductForm(formData: FormData) {
   const priceMxn = Number(formData.get("price_mxn") ?? 0);
   const stock = Number(formData.get("stock") ?? 0);
   const status = String(formData.get("status") ?? "draft");
+  const imageUrl = String(formData.get("image_url") ?? "").trim();
 
   return {
     name,
@@ -24,6 +25,7 @@ function parseProductForm(formData: FormData) {
     price_cents: Math.round(priceMxn * 100),
     stock,
     status,
+    image_url: imageUrl || null,
   };
 }
 

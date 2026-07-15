@@ -33,6 +33,7 @@ export default async function EditarProductoPage({ params }: EditarProductoPageP
             priceMxn: product.price_cents / 100,
             stock: product.stock,
             status: product.status,
+            imageUrl: product.image_url ?? undefined,
           }}
         />
       </div>

@@ -38,7 +38,9 @@ export default async function AdminDashboardPage() {
   return (
     <div>
       <h1 className="font-display text-3xl font-medium">Dashboard</h1>
-      <p className="text-ink-secondary mt-1 font-sans text-sm">Resumen general de Café con Fe.</p>
+      <p className="text-ink-secondary mt-1 font-sans text-sm">
+        Resumen general de Un Café con Fe.
+      </p>
 
       <div className="gap-content-gap mt-8 grid grid-cols-1 sm:grid-cols-3">
         {cards.map((card) => (
