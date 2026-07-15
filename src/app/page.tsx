@@ -207,10 +207,18 @@ export default async function Home() {
       {/* Testimonios */}
       <section className="max-w-content px-container-x py-section-y mx-auto">
         <Reveal>
-          <SectionHeading eyebrow="Comunidad" title="Lo que dicen quienes ya vinieron" />
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading eyebrow="Comunidad" title="Lo que dicen quienes ya vinieron" />
+            <Link
+              href="/comunidad"
+              className="text-berry font-sans text-sm font-medium underline underline-offset-4"
+            >
+              Ver más
+            </Link>
+          </div>
         </Reveal>
         <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-3">
-          {mockTestimonials.map((testimonial, index) => (
+          {mockTestimonials.slice(0, 3).map((testimonial, index) => (
             <Reveal key={testimonial.name} delay={index * 0.1}>
               <TestimonialCard testimonial={testimonial} />
             </Reveal>

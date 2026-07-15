@@ -64,6 +64,21 @@ export const mockTestimonials: MockTestimonial[] = [
     quote:
       "Es el único espacio donde puedo conectar con Dios sin sentirme juzgada. Se nota que está hecho con intención.",
   },
+  {
+    name: "Renata S.",
+    quote:
+      "Fui por curiosidad y me quedé por la comunidad. Ya llevo cinco meses seguidos sin faltar a ninguno.",
+  },
+  {
+    name: "Mariana T.",
+    quote:
+      "No esperaba llorar en mi primer encuentro, pero fue el buen tipo de llanto. Aquí sí se puede ser honesta.",
+  },
+  {
+    name: "Daniela C.",
+    quote:
+      "Vine sola la primera vez, con miedo de no encajar. Hoy son de las amigas que más veo cada mes.",
+  },
 ];
 
 export interface MockFaq {
