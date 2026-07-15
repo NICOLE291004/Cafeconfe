@@ -1,0 +1,13 @@
+/* Red de seguridad de fundamento: neutraliza transiciones/animaciones CSS
+   cuando el sistema pide movimiento reducido. La animación real (Motion
+   for React) llega en Etapa 4 y usará su propio hook useReducedMotion(). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

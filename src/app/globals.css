@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@source not "../../docs/reference/sneako_framer_website.html";
+@import "../styles/tokens/colors.css";
+@import "../styles/tokens/typography.css";
+@import "../styles/tokens/spacing.css";
+@import "../styles/tokens/radius.css";
+@import "../styles/tokens/shadows.css";
+@import "../styles/tokens/motion.css";
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+}

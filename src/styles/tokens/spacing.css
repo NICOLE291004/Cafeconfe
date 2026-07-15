@@ -1,0 +1,12 @@
+@theme {
+  /* Ritmo de sección: escala fluida con clamp() en vez de saltos por
+     breakpoint, para un respiro consistente entre mobile y desktop */
+  --spacing-section-y: clamp(4rem, 3rem + 5vw, 8rem);
+  --spacing-section-y-lg: clamp(5rem, 3rem + 8vw, 10rem);
+  --spacing-content-gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  --spacing-container-x: clamp(1.25rem, 1rem + 3vw, 4rem);
+
+  /* Contenedores */
+  --container-content: 80rem; /* 1280px — contenido/UI, tipo Apple */
+  --container-reading: 42rem; /* 672px — bloques de texto largo */
+}
