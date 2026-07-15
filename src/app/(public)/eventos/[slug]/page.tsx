@@ -6,6 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
 import { RegistrationForm } from "@/components/sections/RegistrationForm";
 import { getEventBySlug } from "@/lib/events";
+import { getSiteSettings } from "@/lib/site-settings";
 import { registerForEvent } from "./actions";
 
 interface EventoPageProps {
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: EventoPageProps): Promise<Met
 
 export default async function EventoDetailPage({ params }: EventoPageProps) {
   const { slug } = await params;
-  const event = await getEventBySlug(slug);
+  const [event, settings] = await Promise.all([getEventBySlug(slug), getSiteSettings()]);
 
   if (!event) {
     notFound();
@@ -112,7 +113,7 @@ export default async function EventoDetailPage({ params }: EventoPageProps) {
                 Quedan {event.spotsLeft} lugares disponibles.
               </p>
               <div className="max-w-reading mt-8">
-                <RegistrationForm action={registerAction} />
+                <RegistrationForm action={registerAction} whatsappUrl={settings.whatsappUrl} />
               </div>
             </>
           ) : (

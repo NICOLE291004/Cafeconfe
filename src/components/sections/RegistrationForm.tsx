@@ -6,6 +6,7 @@ import { FormField } from "@/components/ui/FormField";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Alert } from "@/components/ui/Alert";
+import { WelcomeScreen } from "@/components/sections/WelcomeScreen";
 import type { RegisterState } from "@/app/(public)/eventos/[slug]/actions";
 
 function SubmitButton() {
@@ -19,13 +20,14 @@ function SubmitButton() {
 
 interface RegistrationFormProps {
   action: (prevState: RegisterState, formData: FormData) => Promise<RegisterState>;
+  whatsappUrl?: string;
 }
 
-export function RegistrationForm({ action }: RegistrationFormProps) {
+export function RegistrationForm({ action, whatsappUrl }: RegistrationFormProps) {
   const [state, formAction] = useActionState(action, { status: "idle" });
 
   if (state.status === "success") {
-    return <Alert variant="success">{state.message}</Alert>;
+    return <WelcomeScreen whatsappUrl={whatsappUrl} />;
   }
 
   return (

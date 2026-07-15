@@ -8,8 +8,9 @@ import { Accordion } from "@/components/ui/Accordion";
 import { Reveal } from "@/components/motion/Reveal";
 import { EventCard } from "@/components/sections/EventCard";
 import { TestimonialCard } from "@/components/sections/TestimonialCard";
-import { mockFaqs, mockTestimonials } from "@/lib/mock-data";
 import { getPublishedEvents } from "@/lib/events";
+import { getPublishedTestimonials } from "@/lib/testimonials";
+import { getPublishedFaqs } from "@/lib/faqs";
 
 const FEATURES = [
   {
@@ -48,7 +49,11 @@ function SectionHeading({ eyebrow, title }: { eyebrow?: string; title: string })
 }
 
 export default async function Home() {
-  const events = (await getPublishedEvents()).slice(0, 3);
+  const [events, testimonials, faqs] = await Promise.all([
+    getPublishedEvents().then((e) => e.slice(0, 3)),
+    getPublishedTestimonials().then((t) => t.slice(0, 3)),
+    getPublishedFaqs(),
+  ]);
 
   return (
     <main>
@@ -217,24 +222,28 @@ export default async function Home() {
             </Link>
           </div>
         </Reveal>
-        <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-3">
-          {mockTestimonials.slice(0, 3).map((testimonial, index) => (
-            <Reveal key={testimonial.name} delay={index * 0.1}>
-              <TestimonialCard testimonial={testimonial} />
-            </Reveal>
-          ))}
-        </div>
+        {testimonials.length > 0 ? (
+          <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-3">
+            {testimonials.map((testimonial, index) => (
+              <Reveal key={testimonial.name} delay={index * 0.1}>
+                <TestimonialCard testimonial={testimonial} />
+              </Reveal>
+            ))}
+          </div>
+        ) : null}
       </section>
 
       {/* FAQ */}
-      <section className="max-w-content px-container-x py-section-y mx-auto">
-        <Reveal>
-          <SectionHeading eyebrow="Preguntas frecuentes" title="Antes de que preguntes" />
-        </Reveal>
-        <Reveal delay={0.1} className="mt-10">
-          <Accordion items={mockFaqs} />
-        </Reveal>
-      </section>
+      {faqs.length > 0 ? (
+        <section className="max-w-content px-container-x py-section-y mx-auto">
+          <Reveal>
+            <SectionHeading eyebrow="Preguntas frecuentes" title="Antes de que preguntes" />
+          </Reveal>
+          <Reveal delay={0.1} className="mt-10">
+            <Accordion items={faqs} />
+          </Reveal>
+        </section>
+      ) : null}
 
       {/* Cierre */}
       <section className="bg-espresso py-section-y-lg">

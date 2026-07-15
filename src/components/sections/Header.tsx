@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { WhatsAppIcon } from "@/components/ui/icons";
 import { focusRing, cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -14,7 +15,11 @@ const NAV_LINKS = [
   { label: "Comunidad", href: "/comunidad" },
 ];
 
-export function Header() {
+interface HeaderProps {
+  whatsappUrl?: string;
+}
+
+export function Header({ whatsappUrl }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -44,7 +49,21 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          {whatsappUrl ? (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "border-border text-ink-secondary hover:text-ink rounded-pill flex items-center gap-2 border px-4 py-2 font-sans text-sm font-medium transition-colors",
+                focusRing,
+              )}
+            >
+              <WhatsAppIcon className="h-4 w-4" strokeWidth={1.5} />
+              Únete a la Comunidad
+            </a>
+          ) : null}
           <Button size="sm">Próximo encuentro</Button>
         </div>
 
@@ -82,6 +101,21 @@ export function Header() {
                   {link.label}
                 </Link>
               ))}
+              {whatsappUrl ? (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={cn(
+                    "border-border text-ink rounded-pill mt-2 flex items-center justify-center gap-2 border px-4 py-3 font-sans text-sm font-medium",
+                    focusRing,
+                  )}
+                >
+                  <WhatsAppIcon className="h-4 w-4" strokeWidth={1.5} />
+                  Únete a la Comunidad
+                </a>
+              ) : null}
               <Button className="mt-2 w-full" onClick={() => setIsMenuOpen(false)}>
                 Próximo encuentro
               </Button>

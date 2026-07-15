@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CalendarDays, LayoutDashboard, Package, Users } from "lucide-react";
+import {
+  CalendarDays,
+  HelpCircle,
+  LayoutDashboard,
+  MessageSquareQuote,
+  Package,
+  Settings,
+  Users,
+} from "lucide-react";
 import { cn, focusRing } from "@/lib/utils";
 
 const LINKS = [
@@ -10,6 +18,9 @@ const LINKS = [
   { label: "Eventos", href: "/admin/eventos", icon: CalendarDays },
   { label: "Productos", href: "/admin/productos", icon: Package },
   { label: "Registros", href: "/admin/registros", icon: Users },
+  { label: "Testimonios", href: "/admin/testimonios", icon: MessageSquareQuote },
+  { label: "Preguntas frecuentes", href: "/admin/faq", icon: HelpCircle },
+  { label: "Configuración General", href: "/admin/configuracion", icon: Settings },
 ];
 
 export function AdminNav() {

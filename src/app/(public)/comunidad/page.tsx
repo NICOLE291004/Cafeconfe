@@ -1,22 +1,34 @@
 import type { Metadata } from "next";
+import { Mail, Phone } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
 import { TestimonialCard } from "@/components/sections/TestimonialCard";
-import { InstagramIcon, FacebookIcon } from "@/components/ui/icons";
+import { InstagramIcon, FacebookIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { buttonVariants } from "@/components/ui/Button";
 import { focusRing, cn } from "@/lib/utils";
-import { mockTestimonials } from "@/lib/mock-data";
+import { getSiteSettings } from "@/lib/site-settings";
+import { getPublishedTestimonials } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
   title: "Comunidad",
   description: "Historias de las mujeres que ya forman parte de Café con Fe.",
 };
 
-const SOCIAL_LINKS = [
-  { label: "Instagram", href: "https://instagram.com", icon: InstagramIcon },
-  { label: "Facebook", href: "https://facebook.com", icon: FacebookIcon },
-];
+export default async function ComunidadPage() {
+  const [settings, testimonials] = await Promise.all([
+    getSiteSettings(),
+    getPublishedTestimonials(),
+  ]);
 
-export default function ComunidadPage() {
+  const socialLinks = [
+    settings.instagramUrl
+      ? { label: "Instagram", href: settings.instagramUrl, icon: InstagramIcon }
+      : null,
+    { label: "Facebook", href: "https://facebook.com", icon: FacebookIcon },
+  ].filter((link): link is { label: string; href: string; icon: typeof InstagramIcon } =>
+    Boolean(link),
+  );
+
   return (
     <main>
       <section className="max-w-content px-container-x py-section-y-lg mx-auto">
@@ -34,7 +46,7 @@ export default function ComunidadPage() {
         </Reveal>
 
         <div className="gap-content-gap mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {mockTestimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
             <Reveal key={testimonial.name} delay={index * 0.08}>
               <TestimonialCard testimonial={testimonial} />
             </Reveal>
@@ -84,8 +96,44 @@ export default function ComunidadPage() {
             Escríbenos por redes — respondemos personalmente, no hay bots ni formularios de contacto
             genéricos.
           </p>
+
+          {settings.whatsappUrl ? (
+            <a
+              href={settings.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ size: "lg" }), "mt-6")}
+            >
+              <WhatsAppIcon className="h-4 w-4" strokeWidth={1.5} />
+              Únete a la Comunidad
+            </a>
+          ) : null}
+
+          {settings.email || settings.phone ? (
+            <div className="text-ink-secondary mt-6 flex flex-col gap-2 font-sans text-sm">
+              {settings.email ? (
+                <a
+                  href={`mailto:${settings.email}`}
+                  className={cn("hover:text-ink flex w-fit items-center gap-2", focusRing)}
+                >
+                  <Mail className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+                  {settings.email}
+                </a>
+              ) : null}
+              {settings.phone ? (
+                <a
+                  href={`tel:${settings.phone}`}
+                  className={cn("hover:text-ink flex w-fit items-center gap-2", focusRing)}
+                >
+                  <Phone className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+                  {settings.phone}
+                </a>
+              ) : null}
+            </div>
+          ) : null}
+
           <div className="mt-6 flex gap-3">
-            {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
+            {socialLinks.map(({ label, href, icon: Icon }) => (
               <a
                 key={label}
                 href={href}
