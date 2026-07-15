@@ -16,6 +16,13 @@
   --color-warmgray-700: #433b33;
   --color-warmgray-800: #372f29;
   --color-warmgray-900: #2b241e;
+
+  /* Estados — cálidos y coherentes con la paleta, nunca rojo/verde de
+     sistema operativo */
+  --color-state-error: #b4533e;
+  --color-state-error-soft: #f3e4de;
+  --color-state-success: #6b8f71;
+  --color-state-success-soft: #e8eee4;
 }
 
 /* Nivel 2 — semánticos: lo que consumen los componentes */
@@ -30,4 +37,8 @@
   --color-wood: var(--color-walnut);
   --color-border: var(--color-warmgray-200);
   --color-border-strong: var(--color-warmgray-400);
+  --color-error: var(--color-state-error);
+  --color-error-soft: var(--color-state-error-soft);
+  --color-success: var(--color-state-success);
+  --color-success-soft: var(--color-state-success-soft);
 }
