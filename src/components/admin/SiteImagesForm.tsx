@@ -9,6 +9,11 @@ import { updateSiteImages, type SiteImagesFormState } from "@/app/admin/(dashboa
 import type { SiteImages } from "@/lib/site-images";
 
 const SLOTS: { key: keyof SiteImages; label: string; hint: string }[] = [
+  {
+    key: "logo",
+    label: "Logotipo",
+    hint: "Reemplaza la marca por defecto en Header, Footer y el panel admin. Usa un PNG con fondo transparente si es posible.",
+  },
   { key: "hero", label: "Portada (Home)", hint: "Foto grande junto al título principal." },
   { key: "historia", label: "Nuestra historia", hint: 'Sección "Nació de una necesidad real".' },
   { key: "mosaico_1", label: "Mosaico — foto 1 (grande)", hint: '"Así se siente un encuentro".' },

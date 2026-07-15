@@ -12,11 +12,12 @@ const FOOTER_LINKS = [
 ];
 
 interface FooterProps {
+  logoUrl?: string | null;
   whatsappUrl?: string;
   instagramUrl?: string;
 }
 
-export function Footer({ whatsappUrl, instagramUrl }: FooterProps) {
+export function Footer({ whatsappUrl, instagramUrl, logoUrl }: FooterProps) {
   const socialLinks = [
     instagramUrl ? { label: "Instagram", href: instagramUrl, icon: InstagramIcon } : null,
     { label: "Facebook", href: "https://facebook.com", icon: FacebookIcon },
@@ -28,7 +29,7 @@ export function Footer({ whatsappUrl, instagramUrl }: FooterProps) {
     <footer className="border-border bg-surface-secondary border-t">
       <div className="max-w-content px-container-x py-section-y mx-auto flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <Logo />
+          <Logo logoUrl={logoUrl} />
           <p className="text-ink-secondary max-w-reading mt-2 font-sans text-sm">
             Una comunidad de mujeres en Hermosillo que se reúne para conectar con Dios, en un
             ambiente cálido, íntimo y sin solemnidad.

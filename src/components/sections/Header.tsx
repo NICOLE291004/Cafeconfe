@@ -17,16 +17,17 @@ const NAV_LINKS = [
 
 interface HeaderProps {
   whatsappUrl?: string;
+  logoUrl?: string | null;
 }
 
-export function Header({ whatsappUrl }: HeaderProps) {
+export function Header({ whatsappUrl, logoUrl }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="border-border bg-surface/90 sticky top-0 z-50 border-b backdrop-blur-sm">
       <div className="max-w-content px-container-x mx-auto flex items-center justify-between py-4">
         <Link href="/" className={cn("rounded-sm", focusRing)} onClick={() => setIsMenuOpen(false)}>
-          <Logo />
+          <Logo logoUrl={logoUrl} />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

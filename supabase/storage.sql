@@ -49,7 +49,7 @@ create policy "authenticated can manage site images"
 grant select, insert, update on site_images to anon, authenticated;
 
 insert into site_images (key) values
-  ('hero'), ('historia'),
+  ('logo'), ('hero'), ('historia'),
   ('mosaico_1'), ('mosaico_2'), ('mosaico_3'), ('mosaico_4'),
   ('comunidad_1'), ('comunidad_2'), ('comunidad_3')
 on conflict (key) do nothing;

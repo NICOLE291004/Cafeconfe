@@ -1,15 +1,20 @@
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { getSiteSettings } from "@/lib/site-settings";
+import { getSiteImages } from "@/lib/site-images";
 
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
-  const settings = await getSiteSettings();
+  const [settings, images] = await Promise.all([getSiteSettings(), getSiteImages()]);
 
   return (
     <>
-      <Header whatsappUrl={settings.whatsappUrl} />
+      <Header whatsappUrl={settings.whatsappUrl} logoUrl={images.logo} />
       {children}
-      <Footer whatsappUrl={settings.whatsappUrl} instagramUrl={settings.instagramUrl} />
+      <Footer
+        whatsappUrl={settings.whatsappUrl}
+        instagramUrl={settings.instagramUrl}
+        logoUrl={images.logo}
+      />
     </>
   );
 }

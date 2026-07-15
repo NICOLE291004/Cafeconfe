@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AdminNav } from "@/components/admin/AdminNav";
 import { LogoutButton } from "@/components/admin/LogoutButton";
 import { Logo } from "@/components/ui/Logo";
+import { getSiteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: {
@@ -11,12 +12,14 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
+  const images = await getSiteImages();
+
   return (
     <div className="bg-surface-secondary flex min-h-screen">
       <aside className="border-border bg-surface flex w-64 shrink-0 flex-col border-r px-4 py-6">
         <div className="px-3">
-          <Logo />
+          <Logo logoUrl={images.logo} />
         </div>
         <p className="text-ink-tertiary px-3 font-sans text-xs">Panel de administración</p>
 

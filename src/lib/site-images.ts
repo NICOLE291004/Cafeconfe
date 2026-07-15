@@ -1,6 +1,7 @@
 import { createPublicClient } from "@/lib/supabase/public";
 
 export const SITE_IMAGE_KEYS = [
+  "logo",
   "hero",
   "historia",
   "mosaico_1",

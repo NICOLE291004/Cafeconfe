@@ -1,17 +1,35 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
   className?: string;
   markClassName?: string;
   showWordmark?: boolean;
+  logoUrl?: string | null;
 }
 
 /**
- * Marca simple a propósito: un anillo cálido (dorado) con un corazón
- * (berry) al centro — comunidad y cercanía, sin iconografía religiosa
- * literal. Se combina con el nombre en Fraunces como lockup de logo.
+ * Si hay un logo subido desde /admin/fotos, se usa esa imagen tal cual
+ * (se asume que ya incluye el nombre si hace falta). Si no, cae en la
+ * marca por defecto: un anillo cálido (dorado) con un corazón (berry)
+ * al centro — comunidad y cercanía, sin iconografía religiosa literal.
  */
-export function Logo({ className, markClassName, showWordmark = true }: LogoProps) {
+export function Logo({ className, markClassName, showWordmark = true, logoUrl }: LogoProps) {
+  if (logoUrl) {
+    return (
+      <span className={cn("inline-flex items-center", className)}>
+        <Image
+          src={logoUrl}
+          alt="Un Café con Fe"
+          width={160}
+          height={40}
+          className="h-8 w-auto object-contain"
+          priority
+        />
+      </span>
+    );
+  }
+
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <svg viewBox="0 0 32 32" className={cn("h-7 w-7 shrink-0", markClassName)} aria-hidden="true">
