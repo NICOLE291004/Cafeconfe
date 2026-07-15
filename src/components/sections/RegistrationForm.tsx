@@ -6,7 +6,7 @@ import { FormField } from "@/components/ui/FormField";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Alert } from "@/components/ui/Alert";
-import type { RegisterState } from "@/app/eventos/[slug]/actions";
+import type { RegisterState } from "@/app/(public)/eventos/[slug]/actions";
 
 function SubmitButton() {
   const { pending } = useFormStatus();

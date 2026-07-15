@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { fraunces, inter } from "@/lib/fonts";
-import { Header } from "@/components/sections/Header";
-import { Footer } from "@/components/sections/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,11 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${fraunces.variable} ${inter.variable}`}>
-      <body className="bg-surface text-ink font-sans antialiased">
-        <Header />
-        {children}
-        <Footer />
-      </body>
+      <body className="bg-surface text-ink font-sans antialiased">{children}</body>
     </html>
   );
 }
