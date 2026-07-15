@@ -1,7 +1,10 @@
+import type { Metadata } from "next";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Badge } from "@/components/ui/Badge";
 import { ExportCsvButton } from "@/components/admin/ExportCsvButton";
 import { createClient } from "@/lib/supabase/server";
+
+export const metadata: Metadata = { title: "Registros" };
 
 export default async function AdminRegistrosPage() {
   const supabase = await createClient();

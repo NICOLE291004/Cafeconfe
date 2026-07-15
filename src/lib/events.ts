@@ -6,9 +6,11 @@ export interface EventDisplay {
   slug: string;
   title: string;
   date: string;
+  dateIso: string;
   location: string;
   spotsLeft: number;
   price: string;
+  priceCents: number;
   description: string;
   eventId: string;
 }
@@ -60,9 +62,11 @@ async function toDisplay(
     slug: event.slug,
     title: event.title,
     date: formatEventDate(event.event_date),
+    dateIso: event.event_date,
     location: event.location,
     spotsLeft: Math.max(event.capacity - confirmed, 0),
     price: formatPrice(event.price_cents),
+    priceCents: event.price_cents,
     description: event.description,
     eventId: event.id,
   };

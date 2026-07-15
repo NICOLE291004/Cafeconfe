@@ -5,7 +5,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { getPublishedProducts } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Tienda — Café con Fe",
+  title: "Tienda",
   description: "Productos de Café con Fe para llevar la calidez de los encuentros a casa.",
 };
 

@@ -7,7 +7,7 @@ import { focusRing, cn } from "@/lib/utils";
 import { mockTestimonials } from "@/lib/mock-data";
 
 export const metadata: Metadata = {
-  title: "Comunidad — Café con Fe",
+  title: "Comunidad",
   description: "Historias de las mujeres que ya forman parte de Café con Fe.",
 };
 

@@ -1,7 +1,10 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { EventForm } from "@/components/admin/EventForm";
 import { createClient } from "@/lib/supabase/server";
 import { updateEvent } from "../actions";
+
+export const metadata: Metadata = { title: "Editar evento" };
 
 function toLocalInputValue(iso: string): string {
   const date = new Date(iso);

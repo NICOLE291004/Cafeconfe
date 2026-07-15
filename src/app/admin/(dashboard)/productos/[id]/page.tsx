@@ -1,7 +1,10 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductForm } from "@/components/admin/ProductForm";
 import { createClient } from "@/lib/supabase/server";
 import { updateProduct } from "../actions";
+
+export const metadata: Metadata = { title: "Editar producto" };
 
 interface EditarProductoPageProps {
   params: Promise<{ id: string }>;

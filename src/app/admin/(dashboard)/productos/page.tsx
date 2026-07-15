@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Plus, Pencil } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
@@ -6,6 +7,8 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { DeleteButton } from "@/components/admin/DeleteButton";
 import { createClient } from "@/lib/supabase/server";
 import { deleteProduct } from "./actions";
+
+export const metadata: Metadata = { title: "Productos" };
 
 export default async function AdminProductosPage() {
   const supabase = await createClient();

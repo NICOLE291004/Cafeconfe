@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import { AdminNav } from "@/components/admin/AdminNav";
 import { LogoutButton } from "@/components/admin/LogoutButton";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Panel de administración",
+    template: "%s — Panel de administración",
+  },
+  robots: { index: false, follow: false },
+};
 
 export default function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
   return (

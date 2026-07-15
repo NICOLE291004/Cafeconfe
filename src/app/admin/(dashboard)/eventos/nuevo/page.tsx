@@ -1,5 +1,8 @@
+import type { Metadata } from "next";
 import { EventForm } from "@/components/admin/EventForm";
 import { createEvent } from "../actions";
+
+export const metadata: Metadata = { title: "Nuevo evento" };
 
 export default function NuevoEventoPage() {
   return (

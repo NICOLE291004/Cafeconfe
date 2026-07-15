@@ -5,7 +5,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { getPublishedEvents } from "@/lib/events";
 
 export const metadata: Metadata = {
-  title: "Eventos — Café con Fe",
+  title: "Eventos",
   description: "Los próximos encuentros mensuales de Café con Fe en Hermosillo.",
 };
 

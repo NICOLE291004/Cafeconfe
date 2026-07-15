@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: ProductoPageProps): Promise<M
   const product = await getProductBySlug(slug);
   if (!product) return {};
   return {
-    title: `${product.name} — Café con Fe`,
+    title: product.name,
     description: product.description,
   };
 }

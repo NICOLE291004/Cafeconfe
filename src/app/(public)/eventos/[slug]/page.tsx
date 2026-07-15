@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: EventoPageProps): Promise<Met
   const event = await getEventBySlug(slug);
   if (!event) return {};
   return {
-    title: `${event.title} — Café con Fe`,
+    title: event.title,
     description: event.description,
   };
 }
@@ -32,8 +32,41 @@ export default async function EventoDetailPage({ params }: EventoPageProps) {
 
   const registerAction = registerForEvent.bind(null, event.eventId);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: event.title,
+    description: event.description,
+    startDate: event.dateIso,
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "Place",
+      name: event.location,
+      address: "Hermosillo, Sonora, México",
+    },
+    organizer: {
+      "@type": "Organization",
+      name: "Café con Fe",
+      url: siteUrl,
+    },
+    offers: {
+      "@type": "Offer",
+      price: (event.priceCents / 100).toFixed(2),
+      priceCurrency: "MXN",
+      availability:
+        event.spotsLeft > 0 ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
+      url: `${siteUrl}/eventos/${event.slug}`,
+    },
+  };
+
   return (
     <main className="max-w-content px-container-x py-section-y-lg mx-auto">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Reveal>
         <Link
           href="/eventos"
