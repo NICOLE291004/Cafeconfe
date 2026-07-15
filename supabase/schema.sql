@@ -4,6 +4,13 @@
 
 create extension if not exists "pgcrypto";
 
+-- Las políticas RLS de abajo controlan el acceso fila por fila, pero
+-- primero los roles necesitan el permiso base sobre la tabla — sin esto,
+-- Postgres rechaza la consulta antes siquiera de evaluar RLS.
+grant usage on schema public to anon, authenticated;
+alter default privileges in schema public
+  grant select, insert, update, delete on tables to anon, authenticated;
+
 -- ─────────────────────────────────────────────────────────────
 -- events
 -- ─────────────────────────────────────────────────────────────
@@ -103,3 +110,9 @@ create policy "authenticated can manage products"
   on products for all
   using (auth.role() = 'authenticated')
   with check (auth.role() = 'authenticated');
+
+-- Grant explícito sobre las tablas ya existentes (el `alter default
+-- privileges` de arriba solo cubre tablas creadas después de esa línea,
+-- así que esto es lo que de verdad corrige un proyecto donde las tablas
+-- ya existían antes de correr este script).
+grant select, insert, update, delete on events, registrations, products to anon, authenticated;

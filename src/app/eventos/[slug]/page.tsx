@@ -4,20 +4,17 @@ import { notFound } from "next/navigation";
 import { CalendarDays, MapPin, Tag } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
-import { Button } from "@/components/ui/Button";
-import { mockEvents } from "@/lib/mock-data";
+import { RegistrationForm } from "@/components/sections/RegistrationForm";
+import { getEventBySlug } from "@/lib/events";
+import { registerForEvent } from "./actions";
 
 interface EventoPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
-  return mockEvents.map((event) => ({ slug: event.slug }));
-}
-
 export async function generateMetadata({ params }: EventoPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const event = mockEvents.find((e) => e.slug === slug);
+  const event = await getEventBySlug(slug);
   if (!event) return {};
   return {
     title: `${event.title} — Café con Fe`,
@@ -27,11 +24,13 @@ export async function generateMetadata({ params }: EventoPageProps): Promise<Met
 
 export default async function EventoDetailPage({ params }: EventoPageProps) {
   const { slug } = await params;
-  const event = mockEvents.find((e) => e.slug === slug);
+  const event = await getEventBySlug(slug);
 
   if (!event) {
     notFound();
   }
+
+  const registerAction = registerForEvent.bind(null, event.eventId);
 
   return (
     <main className="max-w-content px-container-x py-section-y-lg mx-auto">
@@ -66,7 +65,7 @@ export default async function EventoDetailPage({ params }: EventoPageProps) {
             </span>
             <span className="flex items-center gap-3">
               <Tag className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
-              {event.price}
+              {event.price} — incluye tu café
             </span>
           </div>
 
@@ -74,19 +73,20 @@ export default async function EventoDetailPage({ params }: EventoPageProps) {
             {event.description}
           </p>
 
-          <p className="text-ink-tertiary mt-2 font-sans text-sm">
-            Quedan {event.spotsLeft} lugares disponibles.
-          </p>
-
-          <div className="mt-8">
-            <Button size="lg" disabled>
-              Registro próximamente
-            </Button>
-            <p className="text-ink-tertiary max-w-reading mt-3 font-sans text-xs">
-              El registro en línea se activa en la próxima etapa del sitio. Mientras tanto,
-              escríbenos por redes para apartar tu lugar.
+          {event.spotsLeft > 0 ? (
+            <>
+              <p className="text-ink-tertiary mt-2 font-sans text-sm">
+                Quedan {event.spotsLeft} lugares disponibles.
+              </p>
+              <div className="max-w-reading mt-8">
+                <RegistrationForm action={registerAction} />
+              </div>
+            </>
+          ) : (
+            <p className="text-error mt-6 font-sans text-sm font-medium">
+              Ya no hay lugares disponibles para este encuentro.
             </p>
-          </div>
+          )}
         </Reveal>
       </div>
     </main>

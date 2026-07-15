@@ -3,9 +3,9 @@ import { CalendarDays, MapPin } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { focusRing, cn } from "@/lib/utils";
-import type { MockEvent } from "@/lib/mock-data";
+import type { EventDisplay } from "@/lib/events";
 
-export function EventCard({ event }: { event: MockEvent }) {
+export function EventCard({ event }: { event: EventDisplay }) {
   return (
     <Link href={`/eventos/${event.slug}`} className={cn("block rounded-xl", focusRing)}>
       <Card interactive className="flex h-full flex-col gap-4">

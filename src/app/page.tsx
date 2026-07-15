@@ -3,11 +3,13 @@ import { Coffee, HeartHandshake, Sparkles, Users } from "lucide-react";
 import { buttonVariants } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { Accordion } from "@/components/ui/Accordion";
 import { Reveal } from "@/components/motion/Reveal";
 import { EventCard } from "@/components/sections/EventCard";
 import { TestimonialCard } from "@/components/sections/TestimonialCard";
-import { mockEvents, mockFaqs, mockTestimonials } from "@/lib/mock-data";
+import { mockFaqs, mockTestimonials } from "@/lib/mock-data";
+import { getPublishedEvents } from "@/lib/events";
 
 const FEATURES = [
   {
@@ -45,7 +47,9 @@ function SectionHeading({ eyebrow, title }: { eyebrow?: string; title: string })
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const events = (await getPublishedEvents()).slice(0, 3);
+
   return (
     <main>
       {/* Hero */}
@@ -99,13 +103,22 @@ export default function Home() {
             </Link>
           </div>
         </Reveal>
-        <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-3">
-          {mockEvents.map((event, index) => (
-            <Reveal key={event.slug} delay={index * 0.1}>
-              <EventCard event={event} />
-            </Reveal>
-          ))}
-        </div>
+        {events.length > 0 ? (
+          <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-3">
+            {events.map((event, index) => (
+              <Reveal key={event.slug} delay={index * 0.1}>
+                <EventCard event={event} />
+              </Reveal>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-10">
+            <EmptyState
+              title="Aún no hay próximos encuentros"
+              description="Vuelve pronto — publicamos las fechas con unos días de anticipación."
+            />
+          </div>
+        )}
       </section>
 
       {/* Nuestra historia */}
