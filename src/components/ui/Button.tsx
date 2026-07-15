@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn, focusRing } from "@/lib/utils";
 import { Spinner } from "./Spinner";
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   cn(
     "inline-flex items-center justify-center gap-2 rounded-pill font-sans font-medium",
     "transition-colors disabled:pointer-events-none disabled:opacity-50",
