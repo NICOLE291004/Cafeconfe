@@ -6,6 +6,8 @@ export interface MockEvent {
   date: string;
   location: string;
   spotsLeft: number;
+  price: string;
+  description: string;
 }
 
 export const mockEvents: MockEvent[] = [
@@ -15,6 +17,9 @@ export const mockEvents: MockEvent[] = [
     date: "9 de agosto, 2026 · 10:00 am",
     location: "Café Presidente, Hermosillo",
     spotsLeft: 6,
+    price: "$150 MXN — incluye tu café",
+    description:
+      "Abrimos el mes con una conversación sobre cómo sostener la fe en medio de temporadas ocupadas. Llega diez minutos antes para elegir tu café con calma.",
   },
   {
     slug: "encuentro-septiembre",
@@ -22,6 +27,9 @@ export const mockEvents: MockEvent[] = [
     date: "13 de septiembre, 2026 · 10:00 am",
     location: "Café Presidente, Hermosillo",
     spotsLeft: 14,
+    price: "$150 MXN — incluye tu café",
+    description:
+      "Un espacio para compartir en voz baja las historias que normalmente no contamos. Habrá una dinámica breve para romper el hielo si vienes sola.",
   },
   {
     slug: "encuentro-octubre",
@@ -29,6 +37,9 @@ export const mockEvents: MockEvent[] = [
     date: "11 de octubre, 2026 · 10:00 am",
     location: "Por confirmar",
     spotsLeft: 20,
+    price: "$150 MXN — incluye tu café",
+    description:
+      "Cerramos el trimestre con un encuentro enfocado en gratitud — qué significa practicarla cuando la vida no está color de rosa.",
   },
 ];
 

@@ -1,0 +1,94 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { CalendarDays, MapPin, Tag } from "lucide-react";
+import { Reveal } from "@/components/motion/Reveal";
+import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { Button } from "@/components/ui/Button";
+import { mockEvents } from "@/lib/mock-data";
+
+interface EventoPageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export function generateStaticParams() {
+  return mockEvents.map((event) => ({ slug: event.slug }));
+}
+
+export async function generateMetadata({ params }: EventoPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const event = mockEvents.find((e) => e.slug === slug);
+  if (!event) return {};
+  return {
+    title: `${event.title} — Café con Fe`,
+    description: event.description,
+  };
+}
+
+export default async function EventoDetailPage({ params }: EventoPageProps) {
+  const { slug } = await params;
+  const event = mockEvents.find((e) => e.slug === slug);
+
+  if (!event) {
+    notFound();
+  }
+
+  return (
+    <main className="max-w-content px-container-x py-section-y-lg mx-auto">
+      <Reveal>
+        <Link
+          href="/eventos"
+          className="text-ink-secondary font-sans text-sm underline underline-offset-4"
+        >
+          ← Todos los encuentros
+        </Link>
+      </Reveal>
+
+      <div className="gap-content-gap mt-6 grid grid-cols-1 items-start lg:grid-cols-2">
+        <Reveal>
+          <PlaceholderImage
+            caption={`Foto: ambiente del encuentro "${event.title}"`}
+            className="aspect-[4/5]"
+          />
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <h1 className="font-display text-4xl font-medium sm:text-5xl">{event.title}</h1>
+
+          <div className="text-ink-secondary mt-6 flex flex-col gap-3 font-sans text-base">
+            <span className="flex items-center gap-3">
+              <CalendarDays className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
+              {event.date}
+            </span>
+            <span className="flex items-center gap-3">
+              <MapPin className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
+              {event.location}
+            </span>
+            <span className="flex items-center gap-3">
+              <Tag className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
+              {event.price}
+            </span>
+          </div>
+
+          <p className="text-ink-secondary max-w-reading mt-6 font-sans text-base leading-relaxed">
+            {event.description}
+          </p>
+
+          <p className="text-ink-tertiary mt-2 font-sans text-sm">
+            Quedan {event.spotsLeft} lugares disponibles.
+          </p>
+
+          <div className="mt-8">
+            <Button size="lg" disabled>
+              Registro próximamente
+            </Button>
+            <p className="text-ink-tertiary max-w-reading mt-3 font-sans text-xs">
+              El registro en línea se activa en la próxima etapa del sitio. Mientras tanto,
+              escríbenos por redes para apartar tu lugar.
+            </p>
+          </div>
+        </Reveal>
+      </div>
+    </main>
+  );
+}
