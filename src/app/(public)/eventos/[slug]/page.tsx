@@ -88,7 +88,7 @@ export default async function EventoDetailPage({ params }: EventoPageProps) {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <h1 className="font-display text-4xl font-medium sm:text-5xl">{event.title}</h1>
+          <h1 className="font-display text-4xl font-light sm:text-5xl">{event.title}</h1>
 
           <div className="text-ink-secondary mt-6 flex flex-col gap-3 font-sans text-base">
             <span className="flex items-center gap-3">

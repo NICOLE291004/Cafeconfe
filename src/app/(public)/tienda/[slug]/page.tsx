@@ -60,7 +60,7 @@ export default async function ProductoDetailPage({ params }: ProductoPageProps) 
         </Reveal>
 
         <Reveal delay={0.1}>
-          <h1 className="font-display text-4xl font-medium sm:text-5xl">{product.name}</h1>
+          <h1 className="font-display text-4xl font-light sm:text-5xl">{product.name}</h1>
 
           <span className="text-ink-secondary mt-4 flex items-center gap-3 font-sans text-lg">
             <Tag className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />

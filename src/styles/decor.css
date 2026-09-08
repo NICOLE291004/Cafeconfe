@@ -1,0 +1,76 @@
+/* Ornamento — encaje, pétalos, cortina de transición y titulares que se
+   "escriben". Puramente decorativo: cada animación respeta
+   prefers-reduced-motion vía las utilidades motion-reduce/motion-safe de
+   Tailwind o el bloque global en motion.css. */
+
+@keyframes escribir {
+  from {
+    clip-path: inset(0 100% -20% 0);
+    opacity: 0.2;
+  }
+  to {
+    clip-path: inset(0 -6% -20% 0);
+    opacity: 1;
+  }
+}
+.reveal-write {
+  animation: escribir 1.4s 0.1s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes cortina {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  46% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  54% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.animate-curtain {
+  animation: cortina 0.72s cubic-bezier(0.75, 0, 0.25, 1) both;
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  }
+  14% {
+    opacity: 0.9;
+  }
+  88% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(108vh) rotate(400deg);
+    opacity: 0;
+  }
+}
+.animate-petal-fall {
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bloom {
+  from {
+    transform: scale(0.3) rotate(-50deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+.animate-bloom {
+  animation: bloom 0.95s both;
+}

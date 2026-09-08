@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import { cn, focusRing } from "@/lib/utils";
 
 export interface AccordionItem {
@@ -29,19 +28,17 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(isOpen ? null : index)}
                 className={cn(
-                  "text-ink flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-sans text-base font-medium",
+                  "text-ink flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-display text-lg",
                   focusRing,
                 )}
               >
                 {item.question}
-                <ChevronDown
-                  className={cn(
-                    "text-ink-tertiary h-5 w-5 shrink-0 transition-transform duration-300",
-                    isOpen && "rotate-180",
-                  )}
-                  strokeWidth={1.5}
+                <span
+                  className="text-berry font-display shrink-0 text-2xl leading-none"
                   aria-hidden="true"
-                />
+                >
+                  {isOpen ? "−" : "+"}
+                </span>
               </button>
             </h3>
             <div

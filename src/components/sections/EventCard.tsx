@@ -19,7 +19,7 @@ export function EventCard({ event }: { event: EventDisplay }) {
 
         <div className="px-2 pb-2">
           <div className="flex items-start justify-between gap-3">
-            <p className="font-display text-xl font-medium">{event.title}</p>
+            <p className="font-display text-xl font-normal">{event.title}</p>
             {event.spotsLeft <= 8 ? <Badge variant="gold">Pocos cupos</Badge> : null}
           </div>
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/Reveal";
 import { ProductCard } from "@/components/sections/ProductCard";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { LaceRibbon } from "@/components/decor/LaceRibbon";
 import { getPublishedProducts } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -13,34 +14,41 @@ export default async function TiendaPage() {
   const products = await getPublishedProducts();
 
   return (
-    <main className="max-w-content px-container-x py-section-y-lg mx-auto">
-      <Reveal>
-        <p className="text-berry font-sans text-sm font-medium tracking-wide uppercase">Tienda</p>
-        <h1 className="font-display mt-2 text-4xl font-medium sm:text-5xl">
-          Un poco de Café con Fe para casa
-        </h1>
-        <p className="text-ink-secondary max-w-reading mt-4 font-sans text-base leading-relaxed">
-          Piezas pensadas para extender la calidez del encuentro más allá del café — hechas en pocas
-          cantidades, con intención.
-        </p>
-      </Reveal>
-
-      {products.length > 0 ? (
-        <div className="gap-content-gap mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product, index) => (
-            <Reveal key={product.slug} delay={index * 0.08}>
-              <ProductCard product={product} />
-            </Reveal>
-          ))}
+    <main>
+      <section className="bg-surface-secondary">
+        <div className="max-w-content px-container-x py-section-y mx-auto text-center">
+          <Reveal>
+            <p className="text-berry font-sans text-sm font-medium tracking-wide uppercase">
+              Tienda
+            </p>
+            <h1 className="reveal-write font-display mt-2 text-4xl font-light sm:text-5xl">
+              Un poco de Café con Fe para casa
+            </h1>
+            <p className="text-ink-secondary max-w-reading mx-auto mt-4 font-sans text-base leading-relaxed">
+              Piezas pensadas para extender la calidez del encuentro más allá del café — hechas en
+              pocas cantidades, con intención.
+            </p>
+          </Reveal>
         </div>
-      ) : (
-        <div className="mt-12">
+        <LaceRibbon variant="bottom" background="#f3e7db" notch="#faf3ec" />
+      </section>
+
+      <div className="max-w-content px-container-x py-section-y mx-auto">
+        {products.length > 0 ? (
+          <div className="gap-content-gap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {products.map((product, index) => (
+              <Reveal key={product.slug} delay={index * 0.08}>
+                <ProductCard product={product} />
+              </Reveal>
+            ))}
+          </div>
+        ) : (
           <EmptyState
             title="Aún no hay productos"
             description="Estamos preparando la primera colección — vuelve pronto."
           />
-        </div>
-      )}
+        )}
+      </div>
     </main>
   );
 }

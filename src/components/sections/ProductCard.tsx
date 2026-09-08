@@ -23,7 +23,7 @@ export function ProductCard({ product }: { product: ProductDisplay }) {
           ) : null}
         </div>
         <div>
-          <p className="font-display text-lg font-medium">{product.name}</p>
+          <p className="font-display text-lg font-normal">{product.name}</p>
           <p className="text-ink-secondary mt-1 font-sans text-sm">{product.price}</p>
         </div>
       </Card>

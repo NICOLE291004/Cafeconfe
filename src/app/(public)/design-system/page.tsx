@@ -10,12 +10,12 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { Reveal } from "@/components/motion/Reveal";
 
 const colorSwatches = [
-  { name: "cream", className: "bg-cream", hex: "#FAF6EF" },
-  { name: "beige", className: "bg-beige", hex: "#EFE1CC" },
-  { name: "espresso", className: "bg-espresso", hex: "#3A2A20" },
-  { name: "berry", className: "bg-berry", hex: "#A4405A" },
-  { name: "gold", className: "bg-gold", hex: "#C9A15A" },
-  { name: "walnut", className: "bg-walnut", hex: "#6F4E37" },
+  { name: "cream", className: "bg-cream", hex: "#FAF3EC" },
+  { name: "beige", className: "bg-beige", hex: "#F3E7DB" },
+  { name: "espresso", className: "bg-espresso", hex: "#3E2723" },
+  { name: "berry", className: "bg-berry", hex: "#7A3B48" },
+  { name: "gold", className: "bg-gold", hex: "#F4C9D6" },
+  { name: "walnut", className: "bg-walnut", hex: "#8A5A3F" },
   { name: "error", className: "bg-error", hex: "#B4533E" },
   { name: "success", className: "bg-success", hex: "#6B8F71" },
 ];

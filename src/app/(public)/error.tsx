@@ -19,7 +19,7 @@ export default function PublicError({
       <p className="text-error font-sans text-sm font-medium tracking-wide uppercase">
         Algo salió mal
       </p>
-      <h1 className="font-display mt-2 text-3xl font-medium sm:text-4xl">
+      <h1 className="font-display mt-2 text-3xl font-light sm:text-4xl">
         No pudimos cargar esta página
       </h1>
       <p className="text-ink-secondary max-w-reading mt-4 font-sans text-base leading-relaxed">

@@ -8,6 +8,8 @@ import { Accordion } from "@/components/ui/Accordion";
 import { Reveal } from "@/components/motion/Reveal";
 import { EventCard } from "@/components/sections/EventCard";
 import { TestimonialCard } from "@/components/sections/TestimonialCard";
+import { LaceRibbon } from "@/components/decor/LaceRibbon";
+import { Petals } from "@/components/decor/Petals";
 import { getPublishedEvents } from "@/lib/events";
 import { getPublishedTestimonials } from "@/lib/testimonials";
 import { getPublishedFaqs } from "@/lib/faqs";
@@ -44,7 +46,7 @@ function SectionHeading({ eyebrow, title }: { eyebrow?: string; title: string })
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="font-display mt-2 text-3xl font-medium sm:text-4xl">{title}</h2>
+      <h2 className="font-display mt-2 text-3xl font-light sm:text-4xl">{title}</h2>
     </div>
   );
 }
@@ -60,41 +62,49 @@ export default async function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="max-w-content gap-content-gap px-container-x py-section-y-lg mx-auto grid grid-cols-1 items-center lg:grid-cols-2">
-        <Reveal>
-          <p className="text-berry font-sans text-sm font-medium tracking-wide uppercase">
-            Hermosillo, Sonora
-          </p>
-          <h1 className="font-display mt-3 text-5xl font-medium sm:text-6xl">
-            Una pausa cálida para conectar con Dios.
-          </h1>
-          <p className="text-ink-secondary max-w-reading mt-6 font-sans text-lg leading-relaxed">
-            Un Café con Fe es una comunidad de mujeres que se reúne una vez al mes en un ambiente
-            íntimo tipo cafetería — sin la solemnidad de la iglesia tradicional, con toda la
-            cercanía de una charla entre amigas.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="#proximos-encuentros" className={buttonVariants({ size: "lg" })}>
-              Ver próximo encuentro
-            </Link>
-            <Link
-              href="#nuestra-historia"
-              className={buttonVariants({ size: "lg", variant: "secondary" })}
-            >
-              Conócenos
-            </Link>
-          </div>
-        </Reveal>
+      <section className="relative overflow-hidden">
+        <Petals />
+        <div className="max-w-content gap-content-gap px-container-x py-section-y-lg relative mx-auto grid grid-cols-1 items-center lg:grid-cols-2">
+          <Reveal>
+            <p className="text-berry font-sans text-sm font-medium tracking-wide uppercase">
+              Hermosillo, Sonora
+            </p>
+            <h1 className="reveal-write font-display mt-3 text-5xl font-light sm:text-6xl">
+              Una pausa cálida para conectar con Dios.
+            </h1>
+            <p className="text-ink-secondary max-w-reading mt-6 font-sans text-lg leading-relaxed">
+              Un Café con Fe es una comunidad de mujeres que se reúne una vez al mes en un ambiente
+              íntimo tipo cafetería — sin la solemnidad de la iglesia tradicional, con toda la
+              cercanía de una charla entre amigas.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="#proximos-encuentros" className={buttonVariants({ size: "lg" })}>
+                Ver próximo encuentro
+              </Link>
+              <Link
+                href="#nuestra-historia"
+                className={buttonVariants({ size: "lg", variant: "secondary" })}
+              >
+                Conócenos
+              </Link>
+            </div>
+            <p className="font-script text-berry mt-8 text-3xl">
+              “Vengan a mí todos los que están cansados”
+            </p>
+          </Reveal>
 
-        <Reveal delay={0.15} scale={0.96}>
-          <Photo
-            src={images.hero}
-            alt="Un Café con Fe"
-            caption="Foto: mesa de café con luz cálida y manos alrededor de una taza"
-            className="aspect-[4/5]"
-          />
-        </Reveal>
+          <Reveal delay={0.15} scale={0.96}>
+            <Photo
+              src={images.hero}
+              alt="Un Café con Fe"
+              caption="Foto: mesa de café con luz cálida y manos alrededor de una taza"
+              className="aspect-[4/5]"
+            />
+          </Reveal>
+        </div>
       </section>
+
+      <LaceRibbon variant="strip" background="#3e2723" notch="#faf3ec" dot="#f4c9d6" />
 
       {/* Próximos encuentros */}
       <section
@@ -131,8 +141,9 @@ export default async function Home() {
       </section>
 
       {/* Nuestra historia */}
-      <section id="nuestra-historia" className="bg-surface-secondary py-section-y">
-        <div className="max-w-content gap-content-gap px-container-x mx-auto grid grid-cols-1 items-center lg:grid-cols-2">
+      <section id="nuestra-historia" className="bg-surface-secondary">
+        <LaceRibbon variant="top" background="#f3e7db" notch="#faf3ec" />
+        <div className="max-w-content gap-content-gap px-container-x py-section-y mx-auto grid grid-cols-1 items-center lg:grid-cols-2">
           <Reveal>
             <Photo
               src={images.historia}
@@ -151,6 +162,7 @@ export default async function Home() {
             </p>
           </Reveal>
         </div>
+        <LaceRibbon variant="bottom" background="#f3e7db" notch="#faf3ec" />
       </section>
 
       {/* Así se siente un encuentro */}
@@ -195,13 +207,15 @@ export default async function Home() {
       </section>
 
       {/* Qué vas a encontrar */}
-      <section className="bg-surface-secondary py-section-y">
-        <div className="max-w-content px-container-x mx-auto">
+      <section className="bg-surface-secondary">
+        <LaceRibbon variant="top" background="#f3e7db" notch="#faf3ec" />
+        <div className="max-w-content px-container-x py-section-y mx-auto">
           <Reveal>
             <SectionHeading
               eyebrow="Qué vas a encontrar"
               title="Cuatro cosas que no van a cambiar"
             />
+            <p className="font-script text-berry mt-2 text-2xl">con fe y con cariño</p>
           </Reveal>
           <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURES.map((feature, index) => (
@@ -212,7 +226,7 @@ export default async function Home() {
                     strokeWidth={1.5}
                     aria-hidden="true"
                   />
-                  <p className="font-display mt-4 text-lg font-medium">{feature.title}</p>
+                  <p className="font-display mt-4 text-lg font-normal">{feature.title}</p>
                   <p className="text-ink-secondary mt-2 font-sans text-sm leading-relaxed">
                     {feature.description}
                   </p>
@@ -221,6 +235,7 @@ export default async function Home() {
             ))}
           </div>
         </div>
+        <LaceRibbon variant="bottom" background="#f3e7db" notch="#faf3ec" />
       </section>
 
       {/* Testimonios */}
@@ -260,11 +275,13 @@ export default async function Home() {
       ) : null}
 
       {/* Cierre */}
-      <section className="bg-espresso py-section-y-lg">
-        <Reveal className="max-w-reading px-container-x mx-auto text-center">
-          <h2 className="font-display text-cream text-3xl font-medium sm:text-4xl">
+      <section className="bg-espresso">
+        <LaceRibbon variant="top" background="#3e2723" notch="#faf3ec" dot="#f4c9d6" />
+        <Reveal className="max-w-reading px-container-x py-section-y-lg mx-auto text-center">
+          <h2 className="reveal-write font-display text-cream text-3xl font-light sm:text-4xl">
             Te esperamos en el próximo encuentro.
           </h2>
+          <p className="font-script text-gold mt-3 text-2xl">nos vemos el sábado</p>
           <p className="text-cream/80 mt-4 font-sans text-base">
             Los cupos son limitados cada mes — regístrate con tiempo.
           </p>

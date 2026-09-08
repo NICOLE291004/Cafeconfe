@@ -16,9 +16,13 @@ export function PlaceholderImage({ caption, className }: PlaceholderImageProps) 
   return (
     <div
       className={cn(
-        "border-border-strong from-beige via-cream to-walnut/20 relative flex flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-dashed bg-linear-to-br px-6 py-16 text-center",
+        "border-border-strong relative flex flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-dashed bg-beige px-6 py-16 text-center",
         className,
       )}
+      style={{
+        backgroundImage:
+          "repeating-linear-gradient(45deg, var(--color-beige) 0 11px, var(--color-cream) 11px 22px)",
+      }}
     >
       <Camera className="text-ink-tertiary h-8 w-8" strokeWidth={1.25} aria-hidden="true" />
       <p className="text-ink-tertiary max-w-reading font-sans text-xs">{caption}</p>

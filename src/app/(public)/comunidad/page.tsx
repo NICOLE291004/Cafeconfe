@@ -5,6 +5,7 @@ import { Photo } from "@/components/ui/Photo";
 import { TestimonialCard } from "@/components/sections/TestimonialCard";
 import { InstagramIcon, FacebookIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { buttonVariants } from "@/components/ui/Button";
+import { LaceRibbon } from "@/components/decor/LaceRibbon";
 import { focusRing, cn } from "@/lib/utils";
 import { getSiteSettings } from "@/lib/site-settings";
 import { getPublishedTestimonials } from "@/lib/testimonials";
@@ -33,21 +34,26 @@ export default async function ComunidadPage() {
 
   return (
     <main>
-      <section className="max-w-content px-container-x py-section-y-lg mx-auto">
-        <Reveal>
-          <p className="text-berry font-sans text-sm font-medium tracking-wide uppercase">
-            Comunidad
-          </p>
-          <h1 className="font-display max-w-reading mt-2 text-4xl font-medium sm:text-5xl">
-            Mujeres que ya encontraron su pausa
-          </h1>
-          <p className="text-ink-secondary max-w-reading mt-4 font-sans text-base leading-relaxed">
-            Cada mes se suman más mujeres a Un Café con Fe. Esto es lo que dicen quienes ya vinieron
-            — sin filtro, sin guion.
-          </p>
-        </Reveal>
+      <section className="bg-espresso relative overflow-hidden">
+        <div className="max-w-content px-container-x py-section-y-lg relative mx-auto text-center">
+          <Reveal>
+            <p className="text-gold font-sans text-sm font-medium tracking-wide uppercase">
+              Comunidad
+            </p>
+            <h1 className="reveal-write font-display text-cream max-w-reading mx-auto mt-2 text-4xl font-light sm:text-5xl">
+              Mujeres que ya encontraron su pausa
+            </h1>
+            <p className="text-cream/80 max-w-reading mx-auto mt-4 font-sans text-base leading-relaxed">
+              Cada mes se suman más mujeres a Un Café con Fe. Esto es lo que dicen quienes ya
+              vinieron — sin filtro, sin guion.
+            </p>
+          </Reveal>
+        </div>
+        <LaceRibbon variant="bottom" background="#3e2723" notch="#faf3ec" dot="#f4c9d6" />
+      </section>
 
-        <div className="gap-content-gap mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="max-w-content px-container-x py-section-y mx-auto">
+        <div className="gap-content-gap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <Reveal key={testimonial.name} delay={index * 0.08}>
               <TestimonialCard testimonial={testimonial} />
@@ -56,13 +62,14 @@ export default async function ComunidadPage() {
         </div>
       </section>
 
-      <section className="bg-surface-secondary py-section-y">
-        <div className="max-w-content px-container-x mx-auto">
+      <section className="bg-surface-secondary">
+        <LaceRibbon variant="top" background="#f3e7db" notch="#faf3ec" />
+        <div className="max-w-content px-container-x py-section-y mx-auto">
           <Reveal>
             <p className="text-berry font-sans text-sm font-medium tracking-wide uppercase">
               Momentos
             </p>
-            <h2 className="font-display mt-2 text-3xl font-medium sm:text-4xl">
+            <h2 className="font-display mt-2 text-3xl font-light sm:text-4xl">
               Así se ve la comunidad
             </h2>
           </Reveal>
@@ -93,6 +100,7 @@ export default async function ComunidadPage() {
             </Reveal>
           </div>
         </div>
+        <LaceRibbon variant="bottom" background="#f3e7db" notch="#faf3ec" />
       </section>
 
       <section id="contacto" className="max-w-content px-container-x py-section-y-lg mx-auto">
@@ -100,9 +108,10 @@ export default async function ComunidadPage() {
           <p className="text-berry font-sans text-sm font-medium tracking-wide uppercase">
             Contacto
           </p>
-          <h2 className="font-display mt-2 text-3xl font-medium sm:text-4xl">
+          <h2 className="font-display mt-2 text-3xl font-light sm:text-4xl">
             ¿Tienes preguntas antes de venir?
           </h2>
+          <p className="font-script text-berry mt-2 text-2xl">con toda confianza</p>
           <p className="text-ink-secondary mt-4 font-sans text-base leading-relaxed">
             Escríbenos por redes — respondemos personalmente, no hay bots ni formularios de contacto
             genéricos.

@@ -1,5 +1,6 @@
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
+import { PageCurtain } from "@/components/decor/PageCurtain";
 import { getSiteSettings } from "@/lib/site-settings";
 import { getSiteImages } from "@/lib/site-images";
 
@@ -8,6 +9,7 @@ export default async function PublicLayout({ children }: { children: React.React
 
   return (
     <>
+      <PageCurtain />
       <Header whatsappUrl={settings.whatsappUrl} logoUrl={images.logo} />
       {children}
       <Footer

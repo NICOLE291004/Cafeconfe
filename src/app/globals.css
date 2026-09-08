@@ -6,6 +6,7 @@
 @import "../styles/tokens/radius.css";
 @import "../styles/tokens/shadows.css";
 @import "../styles/tokens/motion.css";
+@import "../styles/decor.css";
 
 body {
   background: var(--color-surface);

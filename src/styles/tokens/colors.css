@@ -1,21 +1,23 @@
 /* Nivel 1 — primitivos: la paleta cruda de marca */
 @theme {
-  --color-cream: #faf6ef;
-  --color-beige: #efe1cc;
-  --color-espresso: #3a2a20;
-  --color-berry: #a4405a;
-  --color-gold: #c9a15a;
-  --color-walnut: #6f4e37;
+  --color-cream: #faf3ec;
+  --color-beige: #f3e7db;
+  --color-espresso: #3e2723;
+  --color-berry: #7a3b48;
+  --color-gold: #f4c9d6;
+  --color-walnut: #8a5a3f;
 
-  --color-warmgray-100: #8a7f73;
-  --color-warmgray-200: #7e7468;
-  --color-warmgray-300: #72685e;
-  --color-warmgray-400: #665d53;
-  --color-warmgray-500: #5b5249;
-  --color-warmgray-600: #4f463e;
-  --color-warmgray-700: #433b33;
-  --color-warmgray-800: #372f29;
-  --color-warmgray-900: #2b241e;
+  /* Escala de apoyo: espresso a distintas opacidades sobre fondo cálido,
+     igual que el patrón rgba(62,39,35,x) del diseño de referencia. */
+  --color-warmgray-100: rgb(62 39 35 / 0.08);
+  --color-warmgray-200: rgb(62 39 35 / 0.16);
+  --color-warmgray-300: rgb(62 39 35 / 0.24);
+  --color-warmgray-400: rgb(62 39 35 / 0.42);
+  --color-warmgray-500: rgb(62 39 35 / 0.58);
+  --color-warmgray-600: rgb(62 39 35 / 0.78);
+  --color-warmgray-700: rgb(62 39 35 / 0.88);
+  --color-warmgray-800: rgb(62 39 35 / 0.94);
+  --color-warmgray-900: rgb(62 39 35 / 0.98);
 
   /* Estados — cálidos y coherentes con la paleta, nunca rojo/verde de
      sistema operativo */

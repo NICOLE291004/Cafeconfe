@@ -10,4 +10,11 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* El ornamento (pétalos, cortina) se oculta por completo en vez de
+     congelarse a medio gesto. */
+  .animate-petal-fall,
+  .animate-curtain {
+    display: none !important;
+  }
 }
