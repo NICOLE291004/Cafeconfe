@@ -6,8 +6,9 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Photo } from "@/components/ui/Photo";
 import { buttonVariants } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { InstagramIcon } from "@/components/ui/icons";
+import { InstagramIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { getProductBySlug } from "@/lib/products";
+import { getSiteSettings } from "@/lib/site-settings";
 
 interface ProductoPageProps {
   params: Promise<{ slug: string }>;
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: ProductoPageProps): Promise<M
 
 export default async function ProductoDetailPage({ params }: ProductoPageProps) {
   const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  const [product, settings] = await Promise.all([getProductBySlug(slug), getSiteSettings()]);
 
   if (!product) {
     notFound();
@@ -74,18 +75,36 @@ export default async function ProductoDetailPage({ params }: ProductoPageProps) 
           <div className="mt-8">
             {product.inStock ? (
               <>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={buttonVariants({ size: "lg" })}
-                >
-                  <InstagramIcon className="h-4 w-4" strokeWidth={1.5} />
-                  Comprar por Instagram
-                </a>
+                {settings.whatsappUrl ? (
+                  <a
+                    href={settings.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={buttonVariants({ size: "lg" })}
+                  >
+                    <WhatsAppIcon className="h-4 w-4" strokeWidth={1.5} />
+                    Comprar por WhatsApp
+                  </a>
+                ) : settings.instagramUrl ? (
+                  <a
+                    href={settings.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={buttonVariants({ size: "lg" })}
+                  >
+                    <InstagramIcon className="h-4 w-4" strokeWidth={1.5} />
+                    Comprar por Instagram
+                  </a>
+                ) : (
+                  <p className="text-ink-secondary font-sans text-sm">
+                    Escríbenos para comprar esta pieza — agrega tu WhatsApp o Instagram en{" "}
+                    <span className="font-medium">/admin/configuracion</span> para activar este
+                    botón.
+                  </p>
+                )}
                 <p className="text-ink-tertiary max-w-reading mt-3 font-sans text-xs">
-                  Escríbenos por Instagram mencionando esta pieza y coordinamos pago y entrega. El
-                  carrito y pago en línea llegan más adelante.
+                  Escríbenos mencionando esta pieza y coordinamos pago y entrega. El carrito y pago
+                  en línea llegan más adelante.
                 </p>
               </>
             ) : (

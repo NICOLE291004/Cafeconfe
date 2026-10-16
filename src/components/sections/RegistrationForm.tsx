@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { FormField } from "@/components/ui/FormField";
 import { Input } from "@/components/ui/Input";
+import { Checkbox } from "@/components/ui/Checkbox";
 import { Button } from "@/components/ui/Button";
 import { Alert } from "@/components/ui/Alert";
 import { WelcomeScreen } from "@/components/sections/WelcomeScreen";
@@ -36,12 +37,17 @@ export function RegistrationForm({ action, whatsappUrl }: RegistrationFormProps)
       <FormField label="Nombre" htmlFor="reg-name">
         <Input id="reg-name" name="name" placeholder="Tu nombre" required />
       </FormField>
-      <FormField label="Correo" htmlFor="reg-email">
-        <Input id="reg-email" name="email" type="email" placeholder="tu@correo.com" required />
+      <FormField label="Teléfono" htmlFor="reg-phone">
+        <Input id="reg-phone" name="phone" type="tel" placeholder="662 000 0000" required />
       </FormField>
-      <FormField label="Teléfono (opcional)" htmlFor="reg-phone">
-        <Input id="reg-phone" name="phone" type="tel" placeholder="662 000 0000" />
+      <FormField label="Correo (opcional)" htmlFor="reg-email">
+        <Input id="reg-email" name="email" type="email" placeholder="tu@correo.com" />
       </FormField>
+      <Checkbox
+        id="reg-wants-whatsapp"
+        name="wants_whatsapp"
+        label="Quiero recibir avisos por la comunidad de WhatsApp"
+      />
       <SubmitButton />
     </form>
   );

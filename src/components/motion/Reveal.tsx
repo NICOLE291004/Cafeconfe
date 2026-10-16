@@ -13,6 +13,8 @@ interface RevealProps {
   scale?: number;
   duration?: number;
   delay?: number;
+  /** Anima al montar en vez de esperar a entrar en el viewport (contenido above-the-fold). */
+  immediate?: boolean;
 }
 
 export function Reveal({
@@ -22,6 +24,7 @@ export function Reveal({
   scale = 1,
   duration = 1.1,
   delay = 0,
+  immediate = false,
 }: RevealProps) {
   const shouldReduceMotion = useReducedMotion();
 
@@ -44,8 +47,9 @@ export function Reveal({
     <motion.div
       className={className}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      {...(immediate
+        ? { animate: "visible" }
+        : { whileInView: "visible", viewport: { once: true, margin: "-80px" } })}
       variants={variants}
     >
       {children}

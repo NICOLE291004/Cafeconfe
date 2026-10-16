@@ -18,9 +18,21 @@ export interface RegistrationRow {
   id: string;
   event_id: string;
   name: string;
-  email: string;
-  phone: string | null;
+  email: string | null;
+  phone: string;
+  wants_whatsapp: boolean;
+  attended: boolean;
   status: "confirmed" | "cancelled";
+  created_at: string;
+}
+
+export interface PrayerRequestRow {
+  id: string;
+  request: string;
+  name: string | null;
+  phone: string;
+  wants_call: boolean;
+  status: "pendiente" | "atendida";
   created_at: string;
 }
 

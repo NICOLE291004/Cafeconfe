@@ -19,7 +19,12 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
     <div className="bg-surface-secondary flex min-h-screen">
       <aside className="border-border bg-surface flex w-64 shrink-0 flex-col border-r px-4 py-6">
         <div className="px-3">
-          <Logo logoUrl={images.logo} />
+          <Logo
+            logoUrl={images.logo}
+            defaultSrc="/brand/logo-header.png"
+            width={1534}
+            height={1025}
+          />
         </div>
         <p className="text-ink-tertiary px-3 font-sans text-xs">Panel de administración</p>
 

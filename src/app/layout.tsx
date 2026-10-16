@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { fraunces, inter } from "@/lib/fonts";
+import { cormorantGaramond, ebGaramond, pinyonScript } from "@/lib/fonts";
 import "./globals.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -38,7 +38,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${fraunces.variable} ${inter.variable}`}>
+    <html
+      lang="es"
+      className={`${cormorantGaramond.variable} ${ebGaramond.variable} ${pinyonScript.variable}`}
+    >
       <body className="bg-surface text-ink font-sans antialiased">{children}</body>
     </html>
   );

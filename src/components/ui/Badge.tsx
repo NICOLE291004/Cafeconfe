@@ -7,7 +7,7 @@ const badgeVariants = cva(
     variants: {
       variant: {
         berry: "bg-berry text-cream",
-        gold: "bg-gold text-espresso",
+        blush: "bg-blush text-espresso",
         neutral: "bg-surface-secondary text-ink-secondary",
         outline: "border border-border-strong text-ink-secondary",
       },

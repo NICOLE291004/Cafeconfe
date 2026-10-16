@@ -1,9 +1,18 @@
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-eb-garamond), Georgia, serif;
+  --font-display: var(--font-cormorant-garamond), ui-serif, Georgia, serif;
+  --font-script: var(--font-pinyon-script), cursive;
 }
 
-/* Fraunces a tamaños grandes se ve más elegante con tracking ligeramente negativo */
+/* Cormorant Garamond a tamaños grandes se ve más elegante con tracking
+   ligeramente negativo, como en el hero del diseño de Claude Design. */
 .font-display {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
+}
+
+/* Pinyon Script — para los acentos cursivos ("con fe y con cariño", citas
+   destacadas). Ya trae inclinación cursiva propia. */
+.font-script {
+  letter-spacing: 0;
+  line-height: 1.2;
 }

@@ -33,7 +33,7 @@ export async function createTestimonial(
 
   revalidatePath("/admin/testimonios");
   revalidatePath("/");
-  revalidatePath("/comunidad");
+  revalidatePath("/nosotras");
   redirect("/admin/testimonios");
 }
 
@@ -53,7 +53,7 @@ export async function updateTestimonial(
 
   revalidatePath("/admin/testimonios");
   revalidatePath("/");
-  revalidatePath("/comunidad");
+  revalidatePath("/nosotras");
   redirect("/admin/testimonios");
 }
 
@@ -62,6 +62,6 @@ export async function deleteTestimonial(id: string) {
   await supabase.from("testimonials").delete().eq("id", id);
   revalidatePath("/admin/testimonios");
   revalidatePath("/");
-  revalidatePath("/comunidad");
+  revalidatePath("/nosotras");
   redirect("/admin/testimonios");
 }

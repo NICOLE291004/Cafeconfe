@@ -15,17 +15,19 @@ export async function registerForEvent(
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
+  const wantsWhatsapp = formData.get("wants_whatsapp") === "on";
 
-  if (!name || !email) {
-    return { status: "error", message: "Nombre y correo son obligatorios." };
+  if (!name || !phone) {
+    return { status: "error", message: "Nombre y teléfono son obligatorios." };
   }
 
   const supabase = await createClient();
   const { error } = await supabase.from("registrations").insert({
     event_id: eventId,
     name,
-    email,
-    phone: phone || null,
+    email: email || null,
+    phone,
+    wants_whatsapp: wantsWhatsapp,
   });
 
   if (error) {

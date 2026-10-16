@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   CalendarDays,
+  HandHeart,
   HelpCircle,
   Image as ImageIcon,
   LayoutDashboard,
@@ -19,6 +20,7 @@ const LINKS = [
   { label: "Eventos", href: "/admin/eventos", icon: CalendarDays },
   { label: "Productos", href: "/admin/productos", icon: Package },
   { label: "Registros", href: "/admin/registros", icon: Users },
+  { label: "Peticiones de oración", href: "/admin/peticiones", icon: HandHeart },
   { label: "Testimonios", href: "/admin/testimonios", icon: MessageSquareQuote },
   { label: "Preguntas frecuentes", href: "/admin/faq", icon: HelpCircle },
   { label: "Fotos del sitio", href: "/admin/fotos", icon: ImageIcon },

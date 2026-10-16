@@ -8,7 +8,12 @@ export default async function AdminLoginPage() {
   return (
     <main className="bg-surface-secondary px-container-x flex min-h-screen items-center justify-center">
       <div className="border-border bg-surface w-full max-w-sm rounded-xl border p-8 shadow-md">
-        <Logo logoUrl={images.logo} />
+        <Logo
+          logoUrl={images.logo}
+          defaultSrc="/brand/logo-header.png"
+          width={1534}
+          height={1025}
+        />
         <p className="text-ink-secondary mt-1 font-sans text-sm">Panel de administración</p>
         <LoginForm />
       </div>

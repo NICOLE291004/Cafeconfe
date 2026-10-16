@@ -5,14 +5,12 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
-import { WhatsAppIcon } from "@/components/ui/icons";
 import { focusRing, cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { label: "Inicio", href: "/" },
-  { label: "Eventos", href: "/eventos" },
-  { label: "Tienda", href: "/tienda" },
-  { label: "Comunidad", href: "/comunidad" },
+  { label: "Encuentros", href: "/eventos" },
+  { label: "Nosotras", href: "/nosotras" },
 ];
 
 interface HeaderProps {
@@ -24,19 +22,15 @@ export function Header({ whatsappUrl, logoUrl }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="border-border bg-surface/90 sticky top-0 z-50 border-b backdrop-blur-sm">
-      <div className="max-w-content px-container-x mx-auto flex items-center justify-between py-4">
-        <Link href="/" className={cn("rounded-sm", focusRing)} onClick={() => setIsMenuOpen(false)}>
-          <Logo logoUrl={logoUrl} />
-        </Link>
-
-        <nav className="hidden items-center gap-8 md:flex">
+    <header className="bg-surface/95 border-border sticky top-0 z-50 border-b backdrop-blur-sm">
+      <div className="max-w-content px-container-x mx-auto grid grid-cols-2 items-center py-[15px] md:grid-cols-[1fr_auto_1fr]">
+        <nav className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "text-ink-secondary hover:text-ink font-sans text-sm transition-colors",
+                "text-ink hover:text-berry hover:border-berry border-b border-transparent pb-[3px] font-sans text-[13px] tracking-[0.18em] uppercase transition-colors",
                 focusRing,
                 "rounded-sm",
               )}
@@ -46,19 +40,32 @@ export function Header({ whatsappUrl, logoUrl }: HeaderProps) {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <Link
+          href="/"
+          className={cn("justify-self-start rounded-sm md:justify-self-center", focusRing)}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <Logo
+            logoUrl={logoUrl}
+            defaultSrc="/brand/logo-header.png"
+            width={1534}
+            height={1025}
+            className="h-11 md:h-[52px]"
+          />
+        </Link>
+
+        <div className="hidden items-center justify-end gap-3 md:flex">
           {whatsappUrl ? (
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "border-border text-ink-secondary hover:text-ink rounded-pill flex items-center gap-2 border px-4 py-2 font-sans text-sm font-medium transition-colors",
+                "bg-wood text-cream hover:bg-berry rounded-pill flex h-[38px] items-center px-[20px] font-sans text-[12px] tracking-[0.16em] uppercase transition-colors",
                 focusRing,
               )}
             >
-              <WhatsAppIcon className="h-4 w-4" strokeWidth={1.5} />
-              Únete a la Comunidad
+              Unirme
             </a>
           ) : null}
         </div>
@@ -66,7 +73,7 @@ export function Header({ whatsappUrl, logoUrl }: HeaderProps) {
         <button
           type="button"
           className={cn(
-            "text-ink -mr-2 flex h-10 w-10 items-center justify-center rounded-md md:hidden",
+            "text-ink -mr-2 flex h-10 w-10 items-center justify-self-end rounded-md md:hidden",
             focusRing,
           )}
           aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
@@ -104,12 +111,11 @@ export function Header({ whatsappUrl, logoUrl }: HeaderProps) {
                   rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}
                   className={cn(
-                    "border-border text-ink rounded-pill mt-2 flex items-center justify-center gap-2 border px-4 py-3 font-sans text-sm font-medium",
+                    "bg-wood text-cream rounded-pill mt-2 flex items-center justify-center px-4 py-3 font-sans text-[12px] tracking-[0.16em] uppercase",
                     focusRing,
                   )}
                 >
-                  <WhatsAppIcon className="h-4 w-4" strokeWidth={1.5} />
-                  Únete a la Comunidad
+                  Unirme
                 </a>
               ) : null}
             </div>

@@ -11,8 +11,8 @@ export default async function FotosPage() {
     <div>
       <h1 className="font-display text-3xl font-medium">Fotos del sitio</h1>
       <p className="text-ink-secondary mt-1 font-sans text-sm">
-        Estas fotos aparecen en el Home y en Comunidad. Mientras no subas una, se muestra un
-        marcador de posición — no se rompe nada.
+        Estas fotos aparecen en el Home y en Nosotras. Mientras no subas una, se muestra un marcador
+        de posición — no se rompe nada.
       </p>
       <div className="mt-6">
         <SiteImagesForm images={images} />

@@ -14,15 +14,21 @@ const SLOTS: { key: keyof SiteImages; label: string; hint: string }[] = [
     label: "Logotipo",
     hint: "Reemplaza la marca por defecto en Header, Footer y el panel admin. Usa un PNG con fondo transparente si es posible.",
   },
-  { key: "hero", label: "Portada (Home)", hint: "Foto grande junto al título principal." },
-  { key: "historia", label: "Nuestra historia", hint: 'Sección "Nació de una necesidad real".' },
-  { key: "mosaico_1", label: "Mosaico — foto 1 (grande)", hint: '"Así se siente un encuentro".' },
-  { key: "mosaico_2", label: "Mosaico — foto 2", hint: "" },
-  { key: "mosaico_3", label: "Mosaico — foto 3", hint: "" },
-  { key: "mosaico_4", label: "Mosaico — foto 4 (grande)", hint: "" },
-  { key: "comunidad_1", label: "Comunidad — momento 1", hint: "Página /comunidad." },
-  { key: "comunidad_2", label: "Comunidad — momento 2", hint: "" },
-  { key: "comunidad_3", label: "Comunidad — momento 3", hint: "" },
+  {
+    key: "comunidad_1",
+    label: "Comunidad — foto 1",
+    hint: "Galería deslizable en Home y en Nosotras — las mismas fotos aparecen en ambas páginas.",
+  },
+  { key: "comunidad_2", label: "Comunidad — foto 2", hint: "" },
+  { key: "comunidad_3", label: "Comunidad — foto 3", hint: "" },
+  { key: "comunidad_4", label: "Comunidad — foto 4", hint: "" },
+  { key: "comunidad_5", label: "Comunidad — foto 5", hint: "" },
+  { key: "comunidad_6", label: "Comunidad — foto 6", hint: "" },
+  {
+    key: "fundadora",
+    label: "Fundadora (página Nosotras)",
+    hint: "Foto de la fundadora para /nosotras.",
+  },
 ];
 
 function SubmitButton() {

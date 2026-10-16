@@ -1,8 +1,11 @@
+/* Identidad "Un Café con Fe" — cantos rectos por todas partes (postal,
+   tarjetas, fotos), como en el diseño de Claude Design. Solo los botones y
+   las insignias son píldora — el único redondeo del sistema. */
 @theme {
-  --radius-sm: 0.375rem; /* 6px  — inputs, chips pequeños */
-  --radius-md: 0.625rem; /* 10px — botones, cards pequeñas */
-  --radius-lg: 1rem; /* 16px — cards, paneles */
-  --radius-xl: 1.5rem; /* 24px — cards grandes, modales */
-  --radius-2xl: 2rem; /* 32px — paneles hero, marcos de foto */
-  --radius-pill: 999px; /* botones/badges tipo píldora */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-pill: 999px;
 }

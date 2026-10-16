@@ -11,7 +11,8 @@ export default async function ConfiguracionPage() {
     <div>
       <h1 className="font-display text-3xl font-medium">Configuración General</h1>
       <p className="text-ink-secondary mt-1 font-sans text-sm">
-        Estos datos se usan en todo el sitio público (Header, Footer, pantalla de registro).
+        Estos datos se usan en todo el sitio público (Header, Footer, pantalla de registro, página
+        Nosotras).
       </p>
       <div className="mt-6">
         <SiteSettingsForm settings={settings} />

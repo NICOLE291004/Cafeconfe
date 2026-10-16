@@ -7,7 +7,7 @@ export default function RootNotFound() {
       <h1 className="font-display mt-2 text-4xl font-medium">No encontramos esta página</h1>
       <Link
         href="/"
-        className="bg-berry text-cream rounded-pill mt-8 px-8 py-3 text-sm font-medium"
+        className="bg-espresso text-cream rounded-pill mt-8 px-8 py-3 text-sm font-medium"
       >
         Volver al inicio
       </Link>

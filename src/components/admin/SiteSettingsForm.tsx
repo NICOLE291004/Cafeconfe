@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { FormField } from "@/components/ui/FormField";
 import { Input } from "@/components/ui/Input";
+import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { Alert } from "@/components/ui/Alert";
 import {
@@ -72,6 +73,51 @@ export function SiteSettingsForm({ settings }: { settings: SiteSettings }) {
           type="tel"
           placeholder="662 000 0000"
           defaultValue={settings.phone}
+        />
+      </FormField>
+
+      <div className="border-border mt-2 border-t pt-5">
+        <h2 className="font-display text-lg font-medium">Página &ldquo;Nosotras&rdquo;</h2>
+        <p className="text-ink-secondary mt-1 font-sans text-sm">
+          Se muestra en /nosotras — la foto de la fundadora se sube en{" "}
+          <span className="font-medium">Fotos</span>.
+        </p>
+      </div>
+
+      <FormField label="Nombre de la fundadora" htmlFor="founder_name">
+        <Input
+          id="founder_name"
+          name="founder_name"
+          placeholder="Aimee Equihua"
+          defaultValue={settings.founderName}
+        />
+      </FormField>
+
+      <FormField
+        label="Bio corta de la fundadora"
+        htmlFor="founder_bio"
+        helperText="2-4 líneas: quién eres y por qué empezaste Café con Fe."
+      >
+        <Textarea
+          id="founder_bio"
+          name="founder_bio"
+          rows={4}
+          placeholder="Escribe aquí tu bio..."
+          defaultValue={settings.founderBio}
+        />
+      </FormField>
+
+      <FormField
+        label="Historia de origen"
+        htmlFor="story_text"
+        helperText="Cómo nació Café con Fe — el relato completo."
+      >
+        <Textarea
+          id="story_text"
+          name="story_text"
+          rows={8}
+          placeholder="Escribe aquí la historia..."
+          defaultValue={settings.storyText}
         />
       </FormField>
 

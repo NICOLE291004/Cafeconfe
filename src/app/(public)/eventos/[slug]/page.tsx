@@ -56,8 +56,7 @@ export default async function EventoDetailPage({ params }: EventoPageProps) {
       "@type": "Offer",
       price: (event.priceCents / 100).toFixed(2),
       priceCurrency: "MXN",
-      availability:
-        event.spotsLeft > 0 ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
+      availability: "https://schema.org/InStock",
       url: `${siteUrl}/eventos/${event.slug}`,
     },
   };
@@ -78,7 +77,7 @@ export default async function EventoDetailPage({ params }: EventoPageProps) {
       </Reveal>
 
       <div className="gap-content-gap mt-6 grid grid-cols-1 items-start lg:grid-cols-2">
-        <Reveal>
+        <Reveal immediate>
           <Photo
             src={event.imageUrl}
             alt={event.title}
@@ -87,43 +86,45 @@ export default async function EventoDetailPage({ params }: EventoPageProps) {
           />
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <h1 className="font-display text-4xl font-medium sm:text-5xl">{event.title}</h1>
+        <div>
+          <Reveal immediate delay={0.1}>
+            <h1 className="font-display text-4xl font-medium sm:text-5xl">{event.title}</h1>
 
-          <div className="text-ink-secondary mt-6 flex flex-col gap-3 font-sans text-base">
-            <span className="flex items-center gap-3">
-              <CalendarDays className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
-              {event.date}
-            </span>
-            <span className="flex items-center gap-3">
-              <MapPin className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
-              {event.location}
-            </span>
-            <span className="flex items-center gap-3">
-              <Tag className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
-              {event.price} — incluye tu café
-            </span>
-          </div>
+            <div className="text-ink-secondary mt-6 flex flex-col gap-3 font-sans text-base">
+              <span className="flex items-center gap-3">
+                <CalendarDays className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
+                {event.date} · dura 1h 30min aprox.
+              </span>
+              <span className="flex items-center gap-3">
+                <MapPin className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
+                {/^por confirmar$/i.test(event.location.trim()) ? (
+                  event.location
+                ) : (
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-ink underline underline-offset-4"
+                  >
+                    {event.location}
+                  </a>
+                )}
+              </span>
+              <span className="flex items-center gap-3">
+                <Tag className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
+                {event.price}
+              </span>
+            </div>
 
-          <p className="text-ink-secondary max-w-reading mt-6 font-sans text-base leading-relaxed">
-            {event.description}
-          </p>
-
-          {event.spotsLeft > 0 ? (
-            <>
-              <p className="text-ink-tertiary mt-2 font-sans text-sm">
-                Quedan {event.spotsLeft} lugares disponibles.
-              </p>
-              <div className="max-w-reading mt-8">
-                <RegistrationForm action={registerAction} whatsappUrl={settings.whatsappUrl} />
-              </div>
-            </>
-          ) : (
-            <p className="text-error mt-6 font-sans text-sm font-medium">
-              Ya no hay lugares disponibles para este encuentro.
+            <p className="text-ink-secondary max-w-reading mt-6 font-sans text-base leading-relaxed">
+              {event.description}
             </p>
-          )}
-        </Reveal>
+          </Reveal>
+
+          <div className="max-w-reading mt-8">
+            <RegistrationForm action={registerAction} whatsappUrl={settings.whatsappUrl} />
+          </div>
+        </div>
       </div>
     </main>
   );

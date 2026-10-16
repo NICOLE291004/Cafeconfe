@@ -7,15 +7,19 @@ import { Textarea } from "@/components/ui/Textarea";
 import { FormField } from "@/components/ui/FormField";
 import { Alert } from "@/components/ui/Alert";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { LaceEdge } from "@/components/ui/LaceEdge";
+import { FlowerDot } from "@/components/ui/FlowerDot";
 import { Reveal } from "@/components/motion/Reveal";
+import { RevealHeading } from "@/components/motion/RevealHeading";
+import { PetalField } from "@/components/motion/PetalField";
 
 const colorSwatches = [
-  { name: "cream", className: "bg-cream", hex: "#FAF6EF" },
-  { name: "beige", className: "bg-beige", hex: "#EFE1CC" },
-  { name: "espresso", className: "bg-espresso", hex: "#3A2A20" },
-  { name: "berry", className: "bg-berry", hex: "#A4405A" },
-  { name: "gold", className: "bg-gold", hex: "#C9A15A" },
-  { name: "walnut", className: "bg-walnut", hex: "#6F4E37" },
+  { name: "cream (Lino)", className: "bg-cream", hex: "#FAF3EC" },
+  { name: "beige (Lienzo)", className: "bg-beige", hex: "#F3E7DB" },
+  { name: "espresso (Tinta)", className: "bg-espresso", hex: "#3E2723" },
+  { name: "berry (Vino)", className: "bg-berry", hex: "#7A3B48" },
+  { name: "blush (Rubor)", className: "bg-blush", hex: "#F4C9D6" },
+  { name: "walnut / wood (Barro)", className: "bg-walnut", hex: "#3E2723" },
   { name: "error", className: "bg-error", hex: "#B4533E" },
   { name: "success", className: "bg-success", hex: "#6B8F71" },
 ];
@@ -54,7 +58,7 @@ export default function DesignSystemPage() {
         <div className="gap-content-gap grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8">
           {colorSwatches.map((swatch) => (
             <div key={swatch.name} className="text-center">
-              <div className={`${swatch.className} border-border h-20 w-full rounded-lg border`} />
+              <div className={`${swatch.className} border-border h-20 w-full border`} />
               <p className="mt-2 font-sans text-sm font-medium">{swatch.name}</p>
               <p className="text-ink-tertiary font-sans text-xs">{swatch.hex}</p>
             </div>
@@ -64,7 +68,7 @@ export default function DesignSystemPage() {
           {warmGrayScale.map((step) => (
             <div key={step} className="text-center">
               <div
-                className="border-border h-14 w-full rounded-lg border"
+                className="border-border h-14 w-full border"
                 style={{ background: `var(--color-warmgray-${step})` }}
               />
               <p className="mt-2 font-sans text-xs">{step}</p>
@@ -74,22 +78,36 @@ export default function DesignSystemPage() {
       </Section>
 
       <Section title="Tipografía">
-        <h1 className="font-display text-6xl font-medium">Un Café con Fe</h1>
-        <p className="font-display mt-3 text-2xl italic">Una pausa cálida para conectar.</p>
-        <p className="text-ink-secondary max-w-reading mt-4 font-sans text-base leading-relaxed">
-          Cuerpo en Inter: <span className="font-normal">regular 400</span>,{" "}
-          <span className="font-medium">medium 500</span>,{" "}
-          <span className="font-semibold">semibold 600</span>.
+        <p className="text-ink-tertiary font-sans text-xs tracking-[0.2em] uppercase">
+          Display — Cormorant Garamond
         </p>
+        <h1 className="font-display mt-2 text-6xl font-light">No venimos perfectas.</h1>
+        <p className="font-display text-berry mt-1 text-6xl font-light italic">
+          Venimos dispuestas.
+        </p>
+
+        <p className="text-ink-tertiary mt-8 font-sans text-xs tracking-[0.2em] uppercase">
+          Texto — EB Garamond
+        </p>
+        <p className="text-ink-secondary max-w-reading mt-2 font-sans text-base leading-relaxed">
+          Cuerpo en EB Garamond: <span className="font-normal">regular 400</span>,{" "}
+          <span className="font-medium">medium 500</span>,{" "}
+          <span className="font-normal italic">y su cursiva</span>.
+        </p>
+
+        <p className="text-ink-tertiary mt-8 font-sans text-xs tracking-[0.2em] uppercase">
+          Script — Pinyon Script
+        </p>
+        <p className="font-script text-berry mt-2 text-4xl">con fe y con cariño</p>
       </Section>
 
       <Section title="Sombras y radios">
-        <div className="bg-surface-secondary px-container-x rounded-2xl py-8">
+        <div className="bg-surface-secondary px-container-x py-8">
           <div className="gap-content-gap grid grid-cols-2 sm:grid-cols-5">
             {shadowScale.map((step) => (
               <div key={step} className="text-center">
                 <div
-                  className="bg-surface h-20 w-full rounded-lg"
+                  className="bg-surface h-20 w-full"
                   style={{ boxShadow: `var(--shadow-${step})` }}
                 />
                 <p className="mt-2 font-sans text-xs">shadow-{step}</p>
@@ -103,6 +121,54 @@ export default function DesignSystemPage() {
                 <p className="mt-2 font-sans text-xs">{radius.name}</p>
               </div>
             ))}
+          </div>
+          <p className="text-ink-tertiary mt-4 font-sans text-xs">
+            Cantos rectos por diseño — solo botones e insignias son píldora.
+          </p>
+        </div>
+      </Section>
+
+      <Section title="Piezas decorativas">
+        <div className="gap-content-gap grid grid-cols-1 sm:grid-cols-2">
+          <div>
+            <p className="text-ink-tertiary font-sans text-xs tracking-[0.2em] uppercase">
+              LaceEdge — borde de encaje
+            </p>
+            <div className="bg-blush mt-3">
+              <LaceEdge cutout="var(--color-cream)" edge="top" />
+              <div className="p-6 text-center">
+                <p className="font-sans text-sm">Franja de color con muescas festoneadas</p>
+              </div>
+              <LaceEdge cutout="var(--color-cream)" edge="bottom" />
+            </div>
+          </div>
+          <div>
+            <p className="text-ink-tertiary font-sans text-xs tracking-[0.2em] uppercase">
+              FlowerDot — viñeta
+            </p>
+            <div className="mt-3 flex items-center gap-6">
+              <FlowerDot />
+              <FlowerDot
+                petalColor="var(--color-berry)"
+                centerColor="var(--color-cream)"
+                size={40}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10">
+          <p className="text-ink-tertiary font-sans text-xs tracking-[0.2em] uppercase">
+            PetalField + RevealHeading — hero
+          </p>
+          <div className="bg-espresso relative mt-3 overflow-hidden px-6 py-16 text-center">
+            <PetalField count={10} />
+            <RevealHeading
+              as="h2"
+              className="font-display text-cream relative mx-auto max-w-md text-4xl font-light"
+            >
+              Un ratito con Él, una taza caliente.
+            </RevealHeading>
           </div>
         </div>
       </Section>
@@ -132,7 +198,7 @@ export default function DesignSystemPage() {
       <Section title="Badges">
         <div className="flex flex-wrap gap-3">
           <Badge variant="berry">Próximo</Badge>
-          <Badge variant="gold">Destacado</Badge>
+          <Badge variant="blush">Destacado</Badge>
           <Badge variant="neutral">Agotado</Badge>
           <Badge variant="outline">Nuevo</Badge>
         </div>

@@ -10,6 +10,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/comunidad",
+        destination: "/nosotras",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

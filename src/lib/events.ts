@@ -8,7 +8,6 @@ export interface EventDisplay {
   date: string;
   dateIso: string;
   location: string;
-  spotsLeft: number;
   price: string;
   priceCents: number;
   description: string;
@@ -54,18 +53,13 @@ function isNextDynamicUsageError(err: unknown): boolean {
   );
 }
 
-async function toDisplay(
-  event: EventRow,
-  registrationCounts: Map<string, number>,
-): Promise<EventDisplay> {
-  const confirmed = registrationCounts.get(event.id) ?? 0;
+function toDisplay(event: EventRow): EventDisplay {
   return {
     slug: event.slug,
     title: event.title,
     date: formatEventDate(event.event_date),
     dateIso: event.event_date,
     location: event.location,
-    spotsLeft: Math.max(event.capacity - confirmed, 0),
     price: formatPrice(event.price_cents),
     priceCents: event.price_cents,
     description: event.description,
@@ -74,22 +68,7 @@ async function toDisplay(
   };
 }
 
-async function getRegistrationCounts(eventIds: string[]): Promise<Map<string, number>> {
-  if (eventIds.length === 0) return new Map();
-  const supabase = await createClient();
-  const { data } = await supabase
-    .from("registrations")
-    .select("event_id")
-    .eq("status", "confirmed")
-    .in("event_id", eventIds);
-
-  const counts = new Map<string, number>();
-  for (const row of data ?? []) {
-    counts.set(row.event_id, (counts.get(row.event_id) ?? 0) + 1);
-  }
-  return counts;
-}
-
+/** Solo encuentros que todavía no pasan — lo que se muestra como "próximos". */
 export async function getPublishedEvents(): Promise<EventDisplay[]> {
   try {
     const supabase = await createClient();
@@ -97,6 +76,7 @@ export async function getPublishedEvents(): Promise<EventDisplay[]> {
       .from("events")
       .select("*")
       .eq("status", "published")
+      .gte("event_date", new Date().toISOString())
       .order("event_date", { ascending: true });
 
     if (error || !data) {
@@ -104,11 +84,34 @@ export async function getPublishedEvents(): Promise<EventDisplay[]> {
       return [];
     }
 
-    const counts = await getRegistrationCounts(data.map((e) => e.id));
-    return Promise.all(data.map((event) => toDisplay(event, counts)));
+    return data.map(toDisplay);
   } catch (err) {
     if (isNextDynamicUsageError(err)) throw err;
     console.error("getPublishedEvents:", err);
+    return [];
+  }
+}
+
+/** Encuentros que ya pasaron — prueba social ("ya van N encuentros"), no un listado activo. */
+export async function getPastEvents(): Promise<EventDisplay[]> {
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("events")
+      .select("*")
+      .eq("status", "published")
+      .lt("event_date", new Date().toISOString())
+      .order("event_date", { ascending: false });
+
+    if (error || !data) {
+      console.error("getPastEvents:", error?.message);
+      return [];
+    }
+
+    return data.map(toDisplay);
+  } catch (err) {
+    if (isNextDynamicUsageError(err)) throw err;
+    console.error("getPastEvents:", err);
     return [];
   }
 }
@@ -125,8 +128,7 @@ export async function getEventBySlug(slug: string): Promise<EventDisplay | null>
 
     if (error || !data) return null;
 
-    const counts = await getRegistrationCounts([data.id]);
-    return toDisplay(data, counts);
+    return toDisplay(data);
   } catch (err) {
     if (isNextDynamicUsageError(err)) throw err;
     console.error("getEventBySlug:", err);

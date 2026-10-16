@@ -1,99 +1,161 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Coffee, HeartHandshake, Sparkles, Users } from "lucide-react";
 import { buttonVariants } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
-import { Photo } from "@/components/ui/Photo";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Accordion } from "@/components/ui/Accordion";
+import { LaceEdge } from "@/components/ui/LaceEdge";
+import { FlowerDot } from "@/components/ui/FlowerDot";
 import { Reveal } from "@/components/motion/Reveal";
+import { RevealHeading } from "@/components/motion/RevealHeading";
+import { PetalField } from "@/components/motion/PetalField";
 import { EventCard } from "@/components/sections/EventCard";
 import { TestimonialCard } from "@/components/sections/TestimonialCard";
+import { FundadoraSection } from "@/components/sections/FundadoraSection";
+import { CommunityGallery } from "@/components/sections/CommunityGallery";
 import { getPublishedEvents } from "@/lib/events";
 import { getPublishedTestimonials } from "@/lib/testimonials";
 import { getPublishedFaqs } from "@/lib/faqs";
 import { getSiteImages } from "@/lib/site-images";
+import { getSiteSettings } from "@/lib/site-settings";
+import { cn, focusRing } from "@/lib/utils";
 
-const FEATURES = [
-  {
-    icon: Coffee,
-    title: "Ambiente cálido",
-    description: "Café de verdad, luz suave y conversación — nada de solemnidad ni protocolo.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Sin dogma",
-    description: "No importa en qué punto de tu fe estés. Aquí se viene a conectar, no a juzgar.",
-  },
-  {
-    icon: Users,
-    title: "Comunidad real",
-    description: "Mujeres que se vuelven a ver cada mes. Vínculos que se sostienen fuera del café.",
-  },
-  {
-    icon: Sparkles,
-    title: "Una pausa de verdad",
-    description: "Un espacio mensual para respirar, sin la prisa del resto de la semana.",
-  },
+const AUDIENCE = [
+  "Si no crees y te interesa saber de Jesús",
+  "Si ya crees y buscas alimento",
+  "Si no estás segura, pero quieres buscar a Jesús",
+  "Si quieres crecer tu fe",
+  "Si buscas sanación de tu corazón",
+  "Si estás cansada de tu vida",
+  "Si ya crees y quieres crecer",
+  "Si buscas una tarde para desconectar y estar con Jesús",
 ];
 
-function SectionHeading({ eyebrow, title }: { eyebrow?: string; title: string }) {
+const inkLink = cn(
+  "font-sans text-sm font-medium underline underline-offset-4",
+  focusRing,
+  "rounded-sm",
+);
+
+function Eyebrow({ children, onDark = false }: { children: React.ReactNode; onDark?: boolean }) {
+  return (
+    <p
+      className={cn(
+        "font-sans text-xs font-semibold tracking-[0.32em] uppercase",
+        onDark ? "text-blush" : "text-berry",
+      )}
+    >
+      {children}
+    </p>
+  );
+}
+
+function SectionHeading({
+  eyebrow,
+  title,
+  onDark = false,
+}: {
+  eyebrow?: string;
+  title: string;
+  onDark?: boolean;
+}) {
   return (
     <div className="max-w-reading">
-      {eyebrow ? (
-        <p className="text-berry font-sans text-sm font-medium tracking-wide uppercase">
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2 className="font-display mt-2 text-3xl font-medium sm:text-4xl">{title}</h2>
+      {eyebrow ? <Eyebrow onDark={onDark}>{eyebrow}</Eyebrow> : null}
+      <h2
+        className={cn(
+          "font-display mt-3 text-3xl font-light sm:text-4xl",
+          onDark ? "text-cream" : "text-ink",
+        )}
+      >
+        {title}
+      </h2>
     </div>
   );
 }
 
 export default async function Home() {
-  const [events, testimonials, faqs, images] = await Promise.all([
+  const [events, testimonials, faqs, images, settings] = await Promise.all([
     getPublishedEvents().then((e) => e.slice(0, 3)),
-    getPublishedTestimonials().then((t) => t.slice(0, 3)),
+    getPublishedTestimonials(),
     getPublishedFaqs(),
     getSiteImages(),
+    getSiteSettings(),
   ]);
 
   return (
     <main>
-      {/* Hero */}
-      <section className="max-w-content gap-content-gap px-container-x py-section-y-lg mx-auto grid grid-cols-1 items-center lg:grid-cols-2">
-        <Reveal>
-          <p className="text-berry font-sans text-sm font-medium tracking-wide uppercase">
-            Hermosillo, Sonora
-          </p>
-          <h1 className="font-display mt-3 text-5xl font-medium sm:text-6xl">
-            Una pausa cálida para conectar con Dios.
-          </h1>
-          <p className="text-ink-secondary max-w-reading mt-6 font-sans text-lg leading-relaxed">
-            Un Café con Fe es una comunidad de mujeres que se reúne una vez al mes en un ambiente
-            íntimo tipo cafetería — sin la solemnidad de la iglesia tradicional, con toda la
-            cercanía de una charla entre amigas.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="#proximos-encuentros" className={buttonVariants({ size: "lg" })}>
-              Ver próximo encuentro
-            </Link>
-            <Link
-              href="#nuestra-historia"
-              className={buttonVariants({ size: "lg", variant: "secondary" })}
-            >
-              Conócenos
-            </Link>
+      {/* Hero — postal con borde de encaje sobre fondo oscuro con pétalos */}
+      <section className="bg-espresso relative overflow-hidden px-[clamp(14px,3vw,44px)] py-[clamp(28px,4vw,60px)]">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[.16]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 50% 21%,var(--color-blush) 5.5%,transparent 6.5%),radial-gradient(circle at 78.5% 41%,var(--color-blush) 5.5%,transparent 6.5%),radial-gradient(circle at 67.5% 81%,var(--color-blush) 5.5%,transparent 6.5%),radial-gradient(circle at 32.5% 81%,var(--color-blush) 5.5%,transparent 6.5%),radial-gradient(circle at 21.5% 41%,var(--color-blush) 5.5%,transparent 6.5%)",
+            backgroundSize: "110px 110px",
+          }}
+        />
+        <PetalField count={12} />
+        <Reveal className="relative mx-auto max-w-[1000px]" y={26} duration={1.1}>
+          <div className="bg-surface shadow-2xl">
+            <LaceEdge cutout="var(--color-blush)" edge="top" />
+            <div className="px-[clamp(22px,5vw,72px)] pt-[clamp(30px,4vw,54px)] pb-[clamp(38px,5vw,66px)] text-center">
+              <p className="text-berry font-sans text-xs tracking-[0.36em] uppercase">
+                Hermosillo · una vez al mes
+              </p>
+              <Image
+                src="/brand/hero-main.jpg"
+                alt=""
+                width={736}
+                height={412}
+                priority
+                aria-hidden="true"
+                className="mx-auto mt-6 h-auto w-full max-w-[520px]"
+              />
+              <RevealHeading
+                as="h1"
+                delay={0.3}
+                className="font-display mx-auto mt-6 max-w-[22ch] text-[clamp(28px,4.6vw,54px)] leading-[1.14] font-light"
+              >
+                Donde el corazón sana y el propósito despierta
+              </RevealHeading>
+              <p className="text-wood mx-auto mt-4 max-w-md font-sans text-base leading-snug font-medium sm:text-xl">
+                No temas, porque yo te redimí; te puse nombre, mía eres tú.
+              </p>
+              <p className="text-ink-tertiary mt-2 font-sans text-xs tracking-[0.14em] uppercase sm:text-sm">
+                Isaías 43:1
+              </p>
+              <div className="mt-8 flex justify-center">
+                <Link href="#proximos-encuentros" className={buttonVariants({ size: "lg" })}>
+                  Aparta tu lugar
+                </Link>
+              </div>
+              <p className="font-script text-berry mt-7 text-[clamp(22px,2.6vw,30px)]">
+                con fe y con cariño
+              </p>
+            </div>
+            <LaceEdge cutout="var(--color-blush)" edge="bottom" />
           </div>
         </Reveal>
+      </section>
 
-        <Reveal delay={0.15} scale={0.96}>
-          <Photo
-            src={images.hero}
-            alt="Un Café con Fe"
-            caption="Foto: mesa de café con luz cálida y manos alrededor de una taza"
-            className="aspect-[4/5]"
-          />
+      {/* Para quién está dirigido */}
+      <section className="max-w-content px-container-x py-section-y-lg mx-auto">
+        <Reveal>
+          <SectionHeading eyebrow="Para quién está dirigido" title="Si te suena alguna de estas" />
         </Reveal>
+        <div className="border-border bg-border mt-10 grid grid-cols-1 gap-px border sm:grid-cols-2">
+          {AUDIENCE.map((item, index) => (
+            <Reveal
+              key={item}
+              delay={index * 0.05}
+              className="bg-surface flex items-center gap-4 p-6"
+            >
+              <FlowerDot size={26} />
+              <p className="text-ink font-sans text-base leading-snug sm:text-lg">{item}</p>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       {/* Próximos encuentros */}
@@ -104,10 +166,7 @@ export default async function Home() {
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading eyebrow="Agenda" title="Próximos encuentros" />
-            <Link
-              href="/eventos"
-              className="text-berry font-sans text-sm font-medium underline underline-offset-4"
-            >
+            <Link href="/eventos" className={cn(inkLink, "text-ink")}>
               Ver todos
             </Link>
           </div>
@@ -130,27 +189,26 @@ export default async function Home() {
         )}
       </section>
 
-      {/* Nuestra historia */}
-      <section id="nuestra-historia" className="bg-surface-secondary py-section-y">
-        <div className="max-w-content gap-content-gap px-container-x mx-auto grid grid-cols-1 items-center lg:grid-cols-2">
-          <Reveal>
-            <Photo
-              src={images.historia}
-              alt="Nuestra historia"
-              caption="Foto: fundadoras de Un Café con Fe conversando"
-              className="aspect-square"
-            />
-          </Reveal>
-          <Reveal delay={0.1}>
-            <SectionHeading eyebrow="Nuestra historia" title="Nació de una necesidad real" />
-            <p className="text-ink-secondary max-w-reading mt-6 font-sans text-base leading-relaxed">
-              Un Café con Fe empezó porque varias amigas buscábamos un espacio para hablar de fe sin
-              la rigidez de un templo — un lugar donde la conversación se sintiera tan natural como
-              un café entre amigas. Hoy es una comunidad mensual que crece boca a boca, hecha para
-              mujeres que quieren una pausa honesta en medio de la semana.
-            </p>
-          </Reveal>
-        </div>
+      {/* Lo que creemos */}
+      <section id="creemos" className="bg-espresso py-section-y relative overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[.18]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(90deg,var(--color-blush) 0 1px,transparent 1px 18px)",
+          }}
+        />
+        <Reveal className="max-w-reading px-container-x relative mx-auto text-center">
+          <Eyebrow onDark>Lo que creemos</Eyebrow>
+          <h2 className="font-display text-cream mt-3 text-3xl font-light sm:text-4xl">
+            Cuando una mujer sana, <span className="text-blush italic">una generación cambia.</span>
+          </h2>
+          <p className="text-cream/76 mt-5 font-sans text-base leading-relaxed">
+            Nos reunimos una vez al mes, alrededor de una mesa, en una ubicación que se confirma en
+            cada encuentro. Un espacio para conectar con Dios — no un evento más.
+          </p>
+        </Reveal>
       </section>
 
       {/* Así se siente un encuentro */}
@@ -158,94 +216,39 @@ export default async function Home() {
         <Reveal>
           <SectionHeading eyebrow="La experiencia" title="Así se siente un encuentro" />
         </Reveal>
-        <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          <Reveal delay={0} className="lg:col-span-2">
-            <Photo
-              src={images.mosaico_1}
-              alt="Así se siente un encuentro"
-              caption="Foto: grupo de mujeres riendo alrededor de una mesa"
-              className="aspect-video lg:aspect-[21/9]"
-            />
-          </Reveal>
-          <Reveal delay={0.1}>
-            <Photo
-              src={images.mosaico_2}
-              alt="Así se siente un encuentro"
-              caption="Foto: taza de café con detalle de vela"
-              className="aspect-square"
-            />
-          </Reveal>
-          <Reveal delay={0.15}>
-            <Photo
-              src={images.mosaico_3}
-              alt="Así se siente un encuentro"
-              caption="Foto: dos mujeres conversando de cerca"
-              className="aspect-square"
-            />
-          </Reveal>
-          <Reveal delay={0.2} className="lg:col-span-2">
-            <Photo
-              src={images.mosaico_4}
-              alt="Así se siente un encuentro"
-              caption="Foto: vista amplia del espacio del café"
-              className="aspect-video lg:aspect-[21/9]"
-            />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Qué vas a encontrar */}
-      <section className="bg-surface-secondary py-section-y">
-        <div className="max-w-content px-container-x mx-auto">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Qué vas a encontrar"
-              title="Cuatro cosas que no van a cambiar"
-            />
-          </Reveal>
-          <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-            {FEATURES.map((feature, index) => (
-              <Reveal key={feature.title} delay={index * 0.1}>
-                <Card className="h-full">
-                  <feature.icon
-                    className="text-berry h-7 w-7"
-                    strokeWidth={1.5}
-                    aria-hidden="true"
-                  />
-                  <p className="font-display mt-4 text-lg font-medium">{feature.title}</p>
-                  <p className="text-ink-secondary mt-2 font-sans text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-        </div>
+        <Reveal delay={0.1} className="mt-10">
+          <CommunityGallery images={images} />
+        </Reveal>
       </section>
 
       {/* Testimonios */}
-      <section className="max-w-content px-container-x py-section-y mx-auto">
-        <Reveal>
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading eyebrow="Comunidad" title="Lo que dicen quienes ya vinieron" />
-            <Link
-              href="/comunidad"
-              className="text-berry font-sans text-sm font-medium underline underline-offset-4"
-            >
-              Ver más
-            </Link>
-          </div>
-        </Reveal>
-        {testimonials.length > 0 ? (
-          <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-3">
-            {testimonials.map((testimonial, index) => (
-              <Reveal key={testimonial.name} delay={index * 0.1}>
+      {testimonials.length > 0 ? (
+        <section className="max-w-content px-container-x py-section-y-lg mx-auto">
+          <Reveal>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <SectionHeading eyebrow="La comunidad" title="Lo que dicen quienes ya vinieron" />
+              <Link href="/nosotras" className={cn(inkLink, "text-ink")}>
+                Leer más historias
+              </Link>
+            </div>
+          </Reveal>
+          <div className="gap-content-gap mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {testimonials.slice(0, 3).map((testimonial, index) => (
+              <Reveal key={testimonial.name} delay={index * 0.08}>
                 <TestimonialCard testimonial={testimonial} />
               </Reveal>
             ))}
           </div>
-        ) : null}
-      </section>
+          <Reveal delay={0.2} className="mt-8 flex justify-center">
+            <Link
+              href="/nosotras#escribir-testimonio"
+              className={buttonVariants({ variant: "secondary" })}
+            >
+              Escribir mi testimonio
+            </Link>
+          </Reveal>
+        </section>
+      ) : null}
 
       {/* FAQ */}
       {faqs.length > 0 ? (
@@ -259,18 +262,33 @@ export default async function Home() {
         </section>
       ) : null}
 
+      <FundadoraSection settings={settings} images={images} linkToNosotras />
+
       {/* Cierre */}
-      <section className="bg-espresso py-section-y-lg">
-        <Reveal className="max-w-reading px-container-x mx-auto text-center">
-          <h2 className="font-display text-cream text-3xl font-medium sm:text-4xl">
-            Te esperamos en el próximo encuentro.
+      <section className="bg-espresso py-section-y-lg relative overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[.3]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 50% 20%,var(--color-blush) 5.5%,transparent 6.5%),radial-gradient(circle at 79% 41%,var(--color-blush) 5.5%,transparent 6.5%),radial-gradient(circle at 68% 82%,var(--color-blush) 5.5%,transparent 6.5%),radial-gradient(circle at 32% 82%,var(--color-blush) 5.5%,transparent 6.5%),radial-gradient(circle at 21% 41%,var(--color-blush) 5.5%,transparent 6.5%)",
+            backgroundSize: "96px 96px",
+          }}
+        />
+        <Reveal className="max-w-reading px-container-x relative mx-auto text-center">
+          <h2 className="font-display text-cream text-3xl font-light sm:text-4xl">
+            ¿Qué situación enfrentas hoy?
           </h2>
-          <p className="text-cream/80 mt-4 font-sans text-base">
-            Los cupos son limitados cada mes — regístrate con tiempo.
-          </p>
+          <p className="text-cream/80 mt-4 font-sans text-base">Queremos acompañarte.</p>
           <div className="mt-8 flex justify-center">
-            <Link href="/eventos" className={buttonVariants({ size: "lg" })}>
-              Ver próximo encuentro
+            <Link
+              href="/oracion"
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "bg-blush text-espresso hover:bg-cream",
+              )}
+            >
+              Solicitar oración
             </Link>
           </div>
         </Reveal>

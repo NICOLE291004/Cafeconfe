@@ -5,15 +5,15 @@ import { Spinner } from "./Spinner";
 
 export const buttonVariants = cva(
   cn(
-    "inline-flex items-center justify-center gap-2 rounded-pill font-sans font-medium",
+    "inline-flex items-center justify-center gap-2 rounded-md font-sans font-medium",
     "transition-colors disabled:pointer-events-none disabled:opacity-50",
     focusRing,
   ),
   {
     variants: {
       variant: {
-        primary: "bg-berry text-cream shadow-sm hover:bg-berry/90",
-        secondary: "border border-border-strong bg-transparent text-ink hover:bg-surface-secondary",
+        primary: "bg-wood text-cream shadow-sm hover:bg-berry",
+        secondary: "border border-ink bg-transparent text-ink hover:bg-ink hover:text-cream",
         ghost: "bg-transparent text-ink hover:bg-surface-secondary",
       },
       size: {

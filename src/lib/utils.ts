@@ -7,4 +7,4 @@ export function cn(...inputs: ClassValue[]) {
 
 /** Anillo de foco accesible compartido por todo componente interactivo. */
 export const focusRing =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-berry focus-visible:ring-offset-2 focus-visible:ring-offset-surface";
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-walnut focus-visible:ring-offset-2 focus-visible:ring-offset-surface";

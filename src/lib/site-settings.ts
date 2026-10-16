@@ -5,6 +5,9 @@ export interface SiteSettings {
   instagramUrl: string;
   email: string;
   phone: string;
+  founderName: string;
+  founderBio: string;
+  storyText: string;
 }
 
 const FALLBACK: SiteSettings = {
@@ -12,6 +15,9 @@ const FALLBACK: SiteSettings = {
   instagramUrl: "",
   email: "",
   phone: "",
+  founderName: "",
+  founderBio: "",
+  storyText: "",
 };
 
 /**
@@ -25,7 +31,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     const supabase = createPublicClient();
     const { data, error } = await supabase
       .from("site_settings")
-      .select("whatsapp_url, instagram_url, email, phone")
+      .select("whatsapp_url, instagram_url, email, phone, founder_name, founder_bio, story_text")
       .eq("id", 1)
       .maybeSingle();
 
@@ -36,6 +42,9 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       instagramUrl: data.instagram_url,
       email: data.email,
       phone: data.phone,
+      founderName: data.founder_name ?? "",
+      founderBio: data.founder_bio ?? "",
+      storyText: data.story_text ?? "",
     };
   } catch {
     return FALLBACK;
