@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Un Café con Fe
 
-## Getting Started
+Sitio web de **Un Café con Fe**, una comunidad de mujeres en Hermosillo, Sonora, que se reúne una vez al mes en un ambiente tipo café. El sitio da a conocer los encuentros, permite apartar lugar, vende artículos de la comunidad y tiene un panel para que las organizadoras actualicen todo sin tocar código.
 
-First, run the development server:
+**Sitio en vivo:** [cafeconfe.vercel.app](https://cafeconfe.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![Página de inicio de Un Café con Fe](docs/capturas/cafeconfe.png)
+
+## Funcionalidades
+
+**Sitio público**
+- **Encuentros:** listado y página de cada evento con formulario de registro (nombre y WhatsApp) y control de asistencia.
+- **Tienda:** catálogo de productos con página de detalle.
+- **Oración:** formulario para enviar peticiones de oración.
+- **Testimonios:** las asistentes pueden compartir su testimonio; se publica solo tras aprobarse.
+- **Nosotras** y galería de la comunidad, con enlace a la Comunidad de WhatsApp.
+- Animaciones con Motion, diseño adaptable a celular, SEO (metadatos, Open Graph, `sitemap.xml` y `robots.txt`) y estados de carga y error.
+
+**Panel de administración (`/admin`)**
+- Inicio de sesión con Supabase Auth.
+- Alta y edición de encuentros, productos, preguntas frecuentes y testimonios.
+- Consulta de registros por evento con asistencia, y de peticiones de oración.
+- Carga de fotos a Supabase Storage, con conversión automática de fotos HEIC de iPhone.
+- Configuración del sitio: textos, logo y enlaces editables.
+
+## Tecnologías
+
+| Capa | Tecnología |
+|---|---|
+| Framework | Next.js 16 (App Router), React 19 |
+| Lenguaje | TypeScript |
+| Estilos | Tailwind CSS 4, sistema de diseño propio con tokens |
+| Animación | Motion |
+| Datos y autenticación | Supabase (PostgreSQL, Auth y Storage) |
+| Calidad | ESLint, Prettier, verificación de tipos |
+| Despliegue | Vercel |
+
+## Estructura
+
+```
+src/app/(public)/   páginas públicas: inicio, eventos, tienda, oración, nosotras
+src/app/admin/      panel de administración protegido
+src/components/     secciones, componentes de UI, animaciones y formularios del panel
+src/lib/            acceso a datos de Supabase y utilidades
+src/styles/tokens/  tokens del sistema de diseño
+supabase/           scripts SQL del esquema y migraciones
+docs/               análisis de diseño y capturas
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Correr en local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+cp .env.example .env.local   # llena las variables de Supabase y la URL del sitio
+npm run dev                  # http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para la base de datos, ejecuta en el editor SQL de Supabase `supabase/00_setup_completo.sql` y después los scripts numerados en orden.
 
-## Learn More
+Otros comandos: `npm run build`, `npm run lint`, `npm run typecheck` y `npm run format`.
 
-To learn more about Next.js, take a look at the following resources:
+## Autoría
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Diseño y desarrollo: **Nicole Gracia Mendoza** · [GitHub](https://github.com/NICOLE291004)
